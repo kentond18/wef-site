@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Layout from '../components/layout'
 
-export default function Home() {
+function Home() {
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -53,11 +53,11 @@ export default function Home() {
 		</div>
 	);
 }
-
+export default Home;
 Home.getLayout = (page) => (
 	<Layout>
 		{page}
 	</Layout>
 );
 
-
+Home.getLayout.displayName = 'getLayout'
