@@ -1,0 +1,22 @@
+$input-group-addon-color: #0d6efd;
+$input-group-addon-bg: #fff;
+$input-group-addon-border-color: #0d6efd;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+* {
+	box-sizing: border-box;
+}
