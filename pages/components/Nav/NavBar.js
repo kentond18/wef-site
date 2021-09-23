@@ -36,7 +36,7 @@ const NavBar = (props) => {
 
 			{/* MAIN NAVBAR */}
 
-			<nav className="navbar navbar-expand-lg navbar-light ">
+			<nav className="navbar navbar-expand-lg navbar-light shadow sticky-top">
 				<div className="container-fluid">
 					<a className="navbar-brand" href="#">
 						World Eye Foundation
@@ -57,7 +57,7 @@ const NavBar = (props) => {
 						</div>
 					</button>
 					<div
-						className="collapse navbar-collapse justify-content-end"
+						className="collapse navbar-collapse justify-content-end text-secondary"
 						id="navbarNavAltMarkup"
 					>
 						<a
