@@ -9,12 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
+    "bootstrap": "^5.1.1",
+    "bootstrap-icons": "^1.5.0",
     "next": "^11.1.2",
-=======
-    "bootstrap": "^5.1.0",
-    "next": "^11.1.0",
->>>>>>> ed49a698cbf2ef14b98d908536a470aad894da92
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "sass": "^1.38.0"

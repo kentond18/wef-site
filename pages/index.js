@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.scss";
+import NavBar from "./components/Nav/NavBar";
 
 export default function Home() {
 	return (
@@ -14,22 +15,21 @@ export default function Home() {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<main className={styles.main}>
-				<h1 className={styles.title}>
-					Welcome to World Eye Foundation!
-				</h1>
+			<NavBar />
+			{/* <main className="container">
+				<h1 className="display-1">Welcome to World Eye Foundation!</h1>
 
-				<p className={styles.description} style={{ paddingTop: "2em" }}>
+				<p className="display-3">
 					Our site is currently under construction...
 				</p>
 
-				<p className={styles.description}>
+				<p className="display-3">
 					In the meantime, here is the date:{" "}
 					{new Date().toLocaleDateString()}
 				</p>
 			</main>
 
-			<footer className={styles.footer}>
+			<footer className="container">
 				<a
 					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
 					target="_blank"
@@ -45,7 +45,7 @@ export default function Home() {
 						/>
 					</span>
 				</a>
-			</footer>
+			</footer> */}
 		</div>
 	);
 }
