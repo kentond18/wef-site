@@ -26,6 +26,7 @@ $navbar-light-color: $secondary;
 
 // $navbar-light-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$teal-500}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 .nav-link {
 	display: block;
 	padding: 0.5rem 1rem;
@@ -38,6 +39,7 @@ $navbar-light-color: $secondary;
 }
 
 .footer-link {
+	text-decoration: none;
 	-webkit-transition: color 0.15s ease-in-out,
 		background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,

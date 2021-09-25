@@ -10,7 +10,7 @@ const Footer = ({ active }) => {
 				</p>
 				<div className="d-flex flex-column justify-content-evenly">
 					<p className="fs-5">Contact Info</p>
-					<ul className="list-unstyled text-muted">
+					<ul className="list-unstyled fw-light">
 						<li className="py-2">
 							Address: 123 Apple Street <br />
 							Anywhere, Province <br />
@@ -22,52 +22,62 @@ const Footer = ({ active }) => {
 				</div>
 				<div className="d-flex flex-column justify-content-evenly">
 					<p className="fs-5">Important Links</p>
-					<ul className="list-unstyled text-muted">
+					<ul className="list-unstyled fw-light">
 						<Link href="/about" passHref>
-							<li
-								className={`py-2 footer-link ${
-									active == "about" ? active : null
-								}`}
-								id="about-us"
-							>
-								About Us
-							</li>
+							<a className="text-reset text-decoration-none">
+								<li
+									className={`py-2 footer-link ${
+										active == "about" ? active : null
+									}`}
+									id="about-us"
+								>
+									About Us
+								</li>
+							</a>
 						</Link>
-						<Link href="/volunteering" passHref>
-							<li
-								className={`py-2 footer-link ${
-									active == "volunteering" ? "active" : null
-								}`}
-								id="get-involved"
-							>
-								Get Involved
-							</li>
+						<Link href="/volunteering">
+							<a className="text-reset text-decoration-none">
+								<li
+									className={`py-2 footer-link ${
+										active == "volunteering"
+											? "active"
+											: null
+									}`}
+									id="get-involved"
+								>
+									Get Involved
+								</li>
+							</a>
 						</Link>
 						<Link href="/donate" passHref>
-							<li
-								className={`py-2 footer-link ${
-									active == "donate" ? "active" : null
-								}`}
-								id="donate"
-							>
-								Donate
-							</li>
+							<a className="text-reset text-decoration-none">
+								<li
+									className={`py-2 footer-link ${
+										active == "donate" ? "active" : null
+									}`}
+									id="donate"
+								>
+									Donate
+								</li>
+							</a>
 						</Link>
 						<Link href="/contact" passHref>
-							<li
-								className={`py-2 footer-link ${
-									active == "contact" ? "active" : null
-								}`}
-								id="contact-us"
-							>
-								Contact Us
-							</li>
+							<a className="text-reset text-decoration-none">
+								<li
+									className={`py-2 footer-link ${
+										active == "contact" ? "active" : null
+									}`}
+									id="contact-us"
+								>
+									Contact Us
+								</li>
+							</a>
 						</Link>
 					</ul>
 				</div>
 				<div className="d-flex flex-column justify-content-evenly">
 					<div className="fs-5 pb-2">Newsletter</div>
-					<div className="text-muted pb-3">
+					<div className="fw-light pb-3">
 						Sign up for updates of our upcoming projects
 					</div>
 					<form>
