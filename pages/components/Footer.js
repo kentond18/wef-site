@@ -47,7 +47,8 @@ const Footer = (props) => {
 							<input
 								type="email"
 								className="form-control col-6"
-								id="autoSizingInputGroup"
+								name="emailAddress"
+								id="emailInput"
 								placeholder="Email address"
 								required
 							/>

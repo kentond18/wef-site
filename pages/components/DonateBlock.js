@@ -1,7 +1,9 @@
+import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
 import styles from "../../styles/components/DonateBlock.module.scss";
 
 const DonateBlock = (props) => {
+	const router = useRouter();
 	const [email, setEmail] = useState("");
 	const [amount, setAmount] = useState(0);
 
@@ -19,10 +21,11 @@ const DonateBlock = (props) => {
 			amount: amount * 100,
 			currency: "GHS",
 			onClose: () => {
-				alert("Window closed");
+				console.log("Window closed");
 			},
 			callback: (res) => {
-				alert("Payment complete! Reference: " + res.reference);
+				router.push("/donate-complete");
+				console.log("Payment complete! Reference: " + res.reference);
 			},
 		});
 
@@ -30,8 +33,10 @@ const DonateBlock = (props) => {
 	};
 
 	return (
-		<div className="card" style={{ width: "24rem" }}>
-			<h1 className="card-title text-center  mt-3">Donate today!</h1>
+		<div className="card border-0" style={{ width: "24rem" }}>
+			<h1 className="card-title display-4 text-center text-secondary  mt-3">
+				Donate today!
+			</h1>
 			<form className="card-body" onSubmit={startPayment}>
 				<div className="mb-3">
 					<label htmlFor="email-input" className="form-label">
@@ -57,7 +62,10 @@ const DonateBlock = (props) => {
 						Amount:
 					</label>
 					<div className="input-group has-validation">
-						<span className="input-group-text" id="donate-amount">
+						<span
+							className="input-group-text text-primary border-primary border-end-0"
+							id="donate-amount"
+						>
 							GHS
 						</span>
 						<input
@@ -65,7 +73,7 @@ const DonateBlock = (props) => {
 							name="amount"
 							id="amount"
 							required
-							className="form-control"
+							className="form-control border-primary"
 							placeholder="5"
 							aria-label="Amount"
 							aria-describedby="donate-amount"
