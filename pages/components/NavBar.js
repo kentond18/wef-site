@@ -1,7 +1,7 @@
 import styles from "../../styles/components/NavBar.module.scss";
 import Link from "next/link";
 
-const NavBar = (props) => {
+const NavBar = ({ active }) => {
 	return (
 		<div className="bg-light">
 			{/* Header bar to navbar */}
@@ -49,9 +49,9 @@ const NavBar = (props) => {
 
 			<nav className="navbar navbar-expand-lg navbar-light shadow sticky-top">
 				<div className="container-fluid">
-					<a className="navbar-brand" href="#">
-						World Eye Foundation
-					</a>
+					<Link href="/">
+						<a className="navbar-brand">World Eye Foundation</a>
+					</Link>
 					<button
 						className="navbar-toggler border-0"
 						type="button"
@@ -72,7 +72,13 @@ const NavBar = (props) => {
 						id="navbarNavAltMarkup"
 					>
 						<Link aria-current="page" href="/">
-							<a className="nav-link active">Home</a>
+							<a
+								className={`nav-link ${
+									active == "home" ? "active" : null
+								}`}
+							>
+								Home
+							</a>
 						</Link>
 						<div className="nav-item dropdown">
 							<a
@@ -91,33 +97,65 @@ const NavBar = (props) => {
 							>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">History</a>
+										<a
+											className={`nav-link ps-2 ${
+												active == "history"
+													? "active"
+													: null
+											}`}
+										>
+											History
+										</a>
 									</Link>
 								</li>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">
+										<a
+											className={`nav-link ps-2 ${
+												active == "mission"
+													? "active"
+													: null
+											}`}
+										>
 											Mission and Vision
 										</a>
 									</Link>
 								</li>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">
+										<a
+											className={`nav-link ps-2 ${
+												active == "team"
+													? "active"
+													: null
+											}`}
+										>
 											Our Team
 										</a>
 									</Link>
 								</li>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">
+										<a
+											className={`nav-link ps-2 ${
+												active == "partners"
+													? "active"
+													: null
+											}`}
+										>
 											Partners
 										</a>
 									</Link>
 								</li>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">
+										<a
+											className={`nav-link ps-2 ${
+												active == "contact"
+													? "active"
+													: null
+											}`}
+										>
 											Contact Us
 										</a>
 									</Link>
@@ -141,28 +179,52 @@ const NavBar = (props) => {
 							>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">
+										<a
+											className={`nav-link ps-2 ${
+												active == "comm-outreach"
+													? "active"
+													: null
+											}`}
+										>
 											Community and Rural Outreaches
 										</a>
 									</Link>
 								</li>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">
+										<a
+											className={`nav-link ps-2 ${
+												active == "school-screening"
+													? "active"
+													: null
+											}`}
+										>
 											School Screening Programmes
 										</a>
 									</Link>
 								</li>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">
+										<a
+											className={`nav-link ps-2 ${
+												active == "research"
+													? "active"
+													: null
+											}`}
+										>
 											Research and Development
 										</a>
 									</Link>
 								</li>
 								<li>
 									<Link href="#">
-										<a className="nav-link ps-2">
+										<a
+											className={`nav-link ps-2 ${
+												active == "conferences"
+													? "active"
+													: null
+											}`}
+										>
 											Conferences, Webinars, and Eye Care
 											Tips
 										</a>
@@ -171,7 +233,13 @@ const NavBar = (props) => {
 							</ul>
 						</div>
 						<Link href="#">
-							<a className="nav-link">Gallery</a>
+							<a
+								className={`nav-link ${
+									active == "gallery" ? "active" : null
+								}`}
+							>
+								Gallery
+							</a>
 						</Link>
 
 						<div className="nav-item dropdown">
@@ -192,21 +260,40 @@ const NavBar = (props) => {
 								<div className="bg-light">
 									<li>
 										<Link href="/donate">
-											<a className="nav-link ps-2">
+											<a
+												className={`nav-link ps-2 ${
+													active == "donate"
+														? "active"
+														: null
+												}`}
+											>
 												Donate
 											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/corporate-partner">
-											<a className="nav-link ps-2">
+											<a
+												className={`nav-link ps-2 ${
+													active ==
+													"corporate-partner"
+														? "active"
+														: null
+												}`}
+											>
 												Become a Corporate Partner
 											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/project-partner">
-											<a className="nav-link ps-2">
+											<a
+												className={`nav-link ps-2 ${
+													active == "program-partner"
+														? "active"
+														: null
+												}`}
+											>
 												Partner for Programmes or
 												Projects
 											</a>
@@ -214,14 +301,27 @@ const NavBar = (props) => {
 									</li>
 									<li>
 										<Link href="/volunteering">
-											<a className="nav-link ps-2">
+											<a
+												className={`nav-link ps-2 ${
+													active == "volunteering"
+														? "active"
+														: null
+												}`}
+											>
 												Volunteering
 											</a>
 										</Link>
 									</li>
 									<li>
 										<Link href="/other-opportunities">
-											<a className="nav-link ps-2">
+											<a
+												className={`nav-link ps-2 ${
+													active ==
+													"attachment-opportunities"
+														? "active"
+														: null
+												}`}
+											>
 												Attachment, Internship, and
 												Career Opportunities
 											</a>
@@ -231,12 +331,17 @@ const NavBar = (props) => {
 							</ul>
 						</div>
 
-						<a className="nav-link" href="#">
+						<a
+							className={`nav-link ${
+								active == "news" ? "active" : null
+							}`}
+							href="#"
+						>
 							News
 						</a>
 
 						<Link href="/donate" passHref>
-							<button className="btn btn-primary col-2 py-2 ms-3">
+							<button className="btn btn-primary col-2 p-2 ms-3">
 								<a className="text-light text-decoration-none">
 									Donate
 								</a>

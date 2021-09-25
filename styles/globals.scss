@@ -37,7 +37,18 @@ $navbar-light-color: $secondary;
 		border-color 0.15s ease-in-out;
 }
 
+.footer-link {
+	-webkit-transition: color 0.15s ease-in-out,
+		background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+		border-color 0.15s ease-in-out;
+}
+
 .footer-link:hover {
 	color: $primary;
 	text-decoration: underline;
+}
+
+.active {
+	color: $primary;
 }

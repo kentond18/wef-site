@@ -17,11 +17,11 @@ export default function Home() {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 			<body className="vh-100 d-flex flex-column">
-				<NavBar />
+				<NavBar active="home" />
 
 				<MainJumbotron />
 
-				<Footer />
+				<Footer active="home" />
 			</body>
 		</div>
 	);

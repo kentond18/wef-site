@@ -1,7 +1,7 @@
 import styles from "../../styles/components/Footer.module.scss";
 import Link from "next/link";
 
-const Footer = (props) => {
+const Footer = ({ active }) => {
 	return (
 		<footer className="bg-dark mt-auto">
 			<div className="p-4 d-flex flex-column flex-md-row flex-wrap align-items-center align-items-md-start justify-content-evenly text-light">
@@ -24,16 +24,44 @@ const Footer = (props) => {
 					<p className="fs-5">Important Links</p>
 					<ul className="list-unstyled text-muted">
 						<Link href="/about" passHref>
-							<li className="py-2 footer-link">About Us</li>
+							<li
+								className={`py-2 footer-link ${
+									active == "about" ? active : null
+								}`}
+								id="about-us"
+							>
+								About Us
+							</li>
 						</Link>
 						<Link href="/volunteering" passHref>
-							<li className="py-2 footer-link">Get Involved</li>
+							<li
+								className={`py-2 footer-link ${
+									active == "volunteering" ? "active" : null
+								}`}
+								id="get-involved"
+							>
+								Get Involved
+							</li>
 						</Link>
 						<Link href="/donate" passHref>
-							<li className="py-2 footer-link">Donate</li>
+							<li
+								className={`py-2 footer-link ${
+									active == "donate" ? "active" : null
+								}`}
+								id="donate"
+							>
+								Donate
+							</li>
 						</Link>
-						<Link href="/contacy" passHref>
-							<li className="py-2 footer-link">Contact Us</li>
+						<Link href="/contact" passHref>
+							<li
+								className={`py-2 footer-link ${
+									active == "contact" ? "active" : null
+								}`}
+								id="contact-us"
+							>
+								Contact Us
+							</li>
 						</Link>
 					</ul>
 				</div>

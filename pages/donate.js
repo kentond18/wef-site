@@ -18,11 +18,11 @@ const Donate = (props) => {
 			</Head>
 			<Script src="https://js.paystack.co/v1/inline.js"></Script>
 			<body className="vh-100 d-flex flex-column">
-				<NavBar />
+				<NavBar active="donate" />
 				<div className="align-self-center h-75 d-flex flex-column justify-content-center">
 					<DonateBlock />
 				</div>
-				<Footer />
+				<Footer active="donate" />
 			</body>
 		</div>
 	);
