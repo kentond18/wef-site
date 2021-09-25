@@ -23,7 +23,7 @@ const MainJumbotron = (props) => {
 					<br />
 					The World
 				</h1>
-				<p className="col-lg-8 col-sm-6 w-75 text-center text-black-50">
+				<p className="col-lg-8 col-sm-6 w-75 text-center fw-lighter">
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit.
 					Rem vitae laborum eum officiis repudiandae! Earum voluptate
 					natus qui, ut molestias, distinctio consequatur accusamus
@@ -37,7 +37,10 @@ const MainJumbotron = (props) => {
 							</a>
 						</Link>
 					</button>
-					<a className="px-3 text-secondary" href="tel:+447307504262">
+					<a
+						className="px-3 text-secondary fw-light"
+						href="tel:+447307504262"
+					>
 						<i className="bi bi-telephone text-secondary pe-1"></i>
 						+44 73075 04262
 					</a>
