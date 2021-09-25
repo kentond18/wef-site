@@ -6,18 +6,18 @@ const NavBar = ({ active }) => {
 		<div className="bg-light">
 			{/* Header bar to navbar */}
 
-			<div className="container-fluid d-lg-flex justify-content-between border-bottom py-3 align-items-center text-black-50 d-none fw-lighter">
+			<div className="container-fluid d-lg-flex justify-content-between border-bottom py-3 align-items-center text-black d-none fw-lighter">
 				<div className="d-flex justify-content-evenly col-6">
 					<a
 						href="tel:+447307504262"
-						className="text-black-50 text-decoration-none"
+						className="text-black text-decoration-none"
 					>
 						Phone: +44 73075 04262
 					</a>
 					<span>|</span>
 
 					<a
-						className="text-muted text-decoration-none"
+						className="text-black text-decoration-none"
 						href="mailto:test@test.com?subject=Touching Base with World Eye Foundation"
 					>
 						Email: test@test.com
