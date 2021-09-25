@@ -34,7 +34,7 @@ const DonateBlock = (props) => {
 
 	return (
 		<div className="card border-0" style={{ width: "24rem" }}>
-			<h1 className="card-title display-4 text-center text-secondary  mt-3">
+			<h1 className="card-title display-4 text-center text-secondary">
 				Donate today!
 			</h1>
 			<form className="card-body" onSubmit={startPayment}>
