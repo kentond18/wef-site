@@ -341,7 +341,7 @@ const NavBar = ({ active }) => {
 						</a>
 
 						<Link href="/donate" passHref>
-							<button className="btn btn-primary col-2 p-2 ms-3">
+							<button className="btn btn-primary col-3 col-sm-2 col-md-2 p-2 ms-3">
 								<a className="text-light text-decoration-none">
 									Donate
 								</a>
