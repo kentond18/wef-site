@@ -32,13 +32,13 @@ const MainJumbotron = (props) => {
 				<div className="d-flex align-items-center justify-content-evenly">
 					<button className="btn btn-primary px-4 py-2">
 						<Link href="/donate">
-							<a className="text-light text-decoration-none">
+							<a className="text-dark text-decoration-none">
 								Donate
 							</a>
 						</Link>
 					</button>
 					<a
-						className="px-3 text-secondary fw-light"
+						className="px-3 text-secondary fw-lighter"
 						href="tel:+447307504262"
 					>
 						<i className="bi bi-telephone text-secondary pe-1"></i>
