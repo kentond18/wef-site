@@ -2,8 +2,10 @@ import styles from "../styles/Donate.module.scss";
 import DonateBlock from "./components/DonateBlock";
 import Head from "next/head";
 import Script from "next/script";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
-const donate = (props) => {
+const Donate = (props) => {
 	return (
 		<div>
 			<Head>
@@ -15,14 +17,15 @@ const donate = (props) => {
 				/>
 			</Head>
 			<Script src="https://js.paystack.co/v1/inline.js"></Script>
-			<div className="container">
-				<h1 className={styles.header}>Donate Page</h1>
-				<div>
+			<body className="vh-100 d-flex flex-column">
+				<NavBar />
+				<div className="align-self-center pt-3">
 					<DonateBlock />
 				</div>
-			</div>
+				<Footer />
+			</body>
 		</div>
 	);
 };
 
-export default donate;
+export default Donate;

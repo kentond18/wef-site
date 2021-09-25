@@ -15,8 +15,11 @@ $font-weight-normal: 400;
 $font-weight-bolder: 600;
 $font-weight-bold: 700;
 
+$font-size-root: 16px;
+
 $primary: #09cc7f;
-$secondary: #212529;
+$secondary: #072366;
+$dark: #010a1f;
 
 $navbar-light-hover-color: $primary;
 $navbar-light-color: $secondary;
@@ -32,4 +35,9 @@ $navbar-light-color: $secondary;
 		background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		border-color 0.15s ease-in-out;
+}
+
+.footer-link:hover {
+	color: $primary;
+	text-decoration: underline;
 }
