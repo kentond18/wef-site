@@ -94,7 +94,7 @@ const NavBar = ({ active }) => {
 								aria-labelledby="navbarDropdown"
 							>
 								<li>
-									<Link href="/history">
+									<Link href="/about-us/history">
 										<a
 											className={`nav-link ps-2 ${
 												active == "history"
@@ -107,7 +107,7 @@ const NavBar = ({ active }) => {
 									</Link>
 								</li>
 								<li>
-									<Link href="#">
+									<Link href="/about-us/mission-and-vision">
 										<a
 											className={`nav-link ps-2 ${
 												active == "mission"

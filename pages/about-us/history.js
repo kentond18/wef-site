@@ -1,23 +1,23 @@
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 import sanityClient from "@sanity/client";
-import BlockContent from "@sanity/block-content-to-react";
+import SanityBlockContent from "@sanity/block-content-to-react";
 
 const history = ({ data }) => {
 	return (
-		<body className="vh-100 d-flex flex-column">
-			<NavBar />
+		<div className="vh-100 d-flex flex-column">
+			<NavBar active="history" />
 			<div className="container">
-				<h1>{data.header}</h1>
-				<p className="text-muted">
+				<h1 className="text-center pt-3">{data.header}</h1>
+				<p className="text-muted text-end">
 					Last updated:{" "}
 					{new Date(data._updatedAt).toLocaleDateString()}
 				</p>
-				<BlockContent blocks={data.content} />
+				<SanityBlockContent blocks={data.content} />
 			</div>
 
 			<Footer />
-		</body>
+		</div>
 	);
 };
 
@@ -29,9 +29,9 @@ export async function getStaticProps() {
 		dataset: "production",
 		apiVersion: "2021-09-28",
 		token: process.env.SANITY_TOKEN,
-		useCdn: false,
+		useCdn: true,
 	});
-	const query = `*[_type == "aboutUsArticle"]{
+	const query = `*[_type == "article" && references(*[_type == 'section' && sectionName == 'History']._id)]{
 		title,
 		"header": section->sectionName,
 		_updatedAt,

@@ -13,13 +13,13 @@ export default function Home() {
 				<meta name="description" content="World Eye Foundation" />
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<body className="vh-100 d-flex flex-column">
+			<div className="vh-100 d-flex flex-column">
 				<NavBar active="home" />
 
 				<MainJumbotron />
 
 				<Footer active="home" />
-			</body>
+			</div>
 		</div>
 	);
 }

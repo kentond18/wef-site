@@ -93,7 +93,7 @@ const Footer = ({ active }) => {
 							<button
 								className="btn btn-primary"
 								type="submit"
-								onSubmit
+								onSubmit={(data) => console.log(data)}
 							>
 								<i className="bi bi-envelope"></i>
 							</button>
