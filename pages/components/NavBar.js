@@ -133,7 +133,7 @@ const NavBar = ({ active }) => {
 									</Link>
 								</li>
 								<li>
-									<Link href="#">
+									<Link href="/about-us/partners">
 										<a
 											className={`nav-link ps-2 ${
 												active == "partners"

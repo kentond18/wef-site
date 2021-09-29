@@ -1,8 +1,8 @@
-import Head from "next/head";
-import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import sanityClient from "@sanity/client";
+import Footer from "../components/Footer";
+import Head from "next/head";
 import BioCard from "../components/BioCard";
+import sanityClient from "@sanity/client";
 
 const client = sanityClient({
 	projectId: "0te03ffb",
@@ -12,7 +12,7 @@ const client = sanityClient({
 	useCdn: true,
 });
 
-const ourTeam = ({ data }) => {
+const partners = ({ data }) => {
 	let pgData = "";
 	if (data.length < 1)
 		pgData = (
@@ -29,16 +29,16 @@ const ourTeam = ({ data }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
-				<title>Our Team - World Eye Foundation</title>
+				<title>Partners - World Eye Foundation</title>
 				<meta
 					name="description"
-					content="Our Team - World Eye Foundation"
+					content="Partners - World Eye Foundation"
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar active="team" />
-			<h1 className="text-center pt-3">Our Team</h1>
+			<NavBar active="partners" />
+			<h1 className="text-center pt-3">Partners</h1>
 			<div className="d-flex justify-content-evenly flex-wrap">
 				{pgData}
 			</div>
@@ -48,10 +48,10 @@ const ourTeam = ({ data }) => {
 	);
 };
 
-export default ourTeam;
+export default partners;
 
 export async function getStaticProps() {
-	const query = `*[_type == "bio" && references(*[_type == 'section' && sectionName == 'Our Team']._id)]{
+	const query = `*[_type == "bio" && references(*[_type == 'section' && sectionName == 'Partners']._id)]{
 		name,
 		"imgURL": pic.asset->url,
 		position,
