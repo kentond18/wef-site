@@ -51,7 +51,6 @@ export async function getStaticProps() {
 		projectId: "0te03ffb",
 		dataset: "production",
 		apiVersion: "2021-09-28",
-		token: process.env.SANITY_TOKEN,
 		useCdn: true,
 	});
 	const query = `*[_type == "article" && references(*[_type == 'section' && sectionName == 'Vision and Mission']._id)]{

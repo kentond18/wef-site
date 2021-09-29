@@ -8,12 +8,12 @@ const history = ({ data, contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
-				<title>History - World Eye Foundation</title>
 				<meta
 					name="description"
 					content="History - World Eye Foundation"
 				/>
 				<link rel="icon" href="/wef_icon.png" />
+				<title>History - World Eye Foundation</title>
 			</Head>
 			<NavBar active="history" info={contactInfo} />
 			<div className="container">
