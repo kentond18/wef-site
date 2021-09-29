@@ -13,13 +13,6 @@ const client = sanityClient({
 });
 
 const ourTeam = ({ data }) => {
-	// const url = data.imgURL;
-	// const dimensions = url.substring(url.indexOf("-") + 1);
-	// const height = dimensions.substring(0, dimensions.indexOf("x"));
-	// const width = dimensions.substring(
-	// 	dimensions.indexOf("x") + 1,
-	// 	dimensions.indexOf(".")
-	// );
 	let pgData = "";
 	if (!data)
 		pgData = (
