@@ -14,7 +14,7 @@ const MainJumbotron = (props) => {
 				/>
 			</div>
 			<div
-				className={`${styles.heroImg} d-flex flex-column align-items-center`}
+				className={`${styles.heroImg} d-flex flex-column d-lg-block align-items-center`}
 			>
 				<h1
 					className={`align-lg-left display-2 text-secondary fw-bolder ${styles.headerText}`}
@@ -29,7 +29,7 @@ const MainJumbotron = (props) => {
 					natus qui, ut molestias, distinctio consequatur accusamus
 					vitae incidunt repellat nisi molestiae? Quos, id.
 				</p>
-				<div className="d-flex align-items-center justify-content-evenly">
+				<div className="d-flex align-items-center justify-content-center w-75 flex-column flex-md-row">
 					<button className="btn btn-primary px-4 py-2">
 						<Link href="/donate">
 							<a className="text-dark text-decoration-none">

@@ -5,6 +5,14 @@ import imageUrlBuilder from "@sanity/image-url";
 const BioCard = ({ data, client }) => {
 	const imgBuilder = imageUrlBuilder(client);
 
+	if (!data) {
+		return (
+			<div className="display-3">
+				The card was not rendered properly. Missing Data
+			</div>
+		);
+	}
+
 	return (
 		<div
 			className="container d-flex flex-column align-items-center py-3"

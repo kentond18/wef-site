@@ -12,12 +12,17 @@ const Footer = ({ active, info }) => {
 					<p className="fs-5">Contact Info</p>
 					<ul className="list-unstyled fw-light">
 						<li className="py-2">
-							{info.address.street} <br />
-							{info.address.city}, {info.address.province} <br />
-							{info.address.postcode}
+							{info.address.street || "123 Test Street"} <br />
+							{info.address.city || "Test City"},{" "}
+							{info.address.province || "Test PRovince"} <br />
+							{info.address.postcode || "00000"}
 						</li>
-						<li className="py-2">{info.phone}</li>
-						<li className="py-2">{info.email}</li>
+						<li className="py-2">
+							{info.phone || "+44 000 000 0000"}
+						</li>
+						<li className="py-2">
+							{info.email || "test@email.com"}
+						</li>
 					</ul>
 				</div>
 				<div className="d-flex flex-column justify-content-evenly">

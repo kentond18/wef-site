@@ -12,7 +12,7 @@ const NavBar = ({ active, info }) => {
 						href="tel:+447307504262"
 						className="text-black text-decoration-none"
 					>
-						{info.phone}
+						{info.phone || "+44 000 000 0000"}
 					</a>
 					<span>|</span>
 
@@ -20,7 +20,7 @@ const NavBar = ({ active, info }) => {
 						className="text-black text-decoration-none"
 						href="mailto:test@test.com?subject=Touching Base with World Eye Foundation"
 					>
-						{info.email}
+						{info.email || "test@email.com"}
 					</a>
 					<span>|</span>
 					<div className="d-flex justify-content-evenly">
