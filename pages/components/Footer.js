@@ -61,7 +61,7 @@ const Footer = ({ active }) => {
 								</li>
 							</a>
 						</Link>
-						<Link href="/contact" passHref>
+						<Link href="/about-us/contact-us" passHref>
 							<a className="text-reset text-decoration-none">
 								<li
 									className={`py-2 footer-link ${
