@@ -4,7 +4,7 @@ import Head from "next/head";
 import sanityClient from "@sanity/client";
 import SanityBlockContent from "@sanity/block-content-to-react";
 
-const history = ({ data }) => {
+const history = ({ data, contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -15,7 +15,7 @@ const history = ({ data }) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar active="history" />
+			<NavBar active="history" info={contactInfo} />
 			<div className="container">
 				<h1 className="text-center pt-3">{data.header}</h1>
 				<p className="text-muted text-end">
@@ -25,7 +25,7 @@ const history = ({ data }) => {
 				<SanityBlockContent blocks={data.content} />
 			</div>
 
-			<Footer active="about" />
+			<Footer active="about" info={contactInfo} />
 		</div>
 	);
 };
@@ -52,9 +52,21 @@ export async function getStaticProps() {
 		data = res[0];
 	});
 
+	const infoQuery = `*[_type == "contact"]{
+		email,
+		phone,
+		address,
+	  }`;
+	let contactData;
+
+	await client.fetch(infoQuery).then((res) => {
+		contactData = res;
+	});
+
 	return {
 		props: {
 			data: data,
+			contactInfo: contactData[0],
 		},
 	};
 }

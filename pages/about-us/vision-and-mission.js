@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
 
-const visionAndMission = ({ data }) => {
+const visionAndMission = ({ data, contactInfo }) => {
 	const BlockRenderer = (props) => {
 		const { style = "normal" } = props.node;
 
@@ -30,7 +30,7 @@ const visionAndMission = ({ data }) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar active="mission" />
+			<NavBar active="mission" info={contactInfo} />
 			<div className="container">
 				<h1 className="text-center pt-3">{data.header}</h1>
 				<SanityBlockContent
@@ -39,7 +39,7 @@ const visionAndMission = ({ data }) => {
 				/>
 			</div>
 
-			<Footer />
+			<Footer info={contactInfo} />
 		</div>
 	);
 };
@@ -66,9 +66,21 @@ export async function getStaticProps() {
 		data = res[0];
 	});
 
+	const infoQuery = `*[_type == "contact"]{
+		email,
+		phone,
+		address,
+	  }`;
+	let contactData;
+
+	await client.fetch(infoQuery).then((res) => {
+		contactData = res;
+	});
+
 	return {
 		props: {
 			data: data,
+			contactInfo: contactData[0],
 		},
 	};
 }

@@ -1,7 +1,7 @@
 import styles from "../../styles/components/Footer.module.scss";
 import Link from "next/link";
 
-const Footer = ({ active }) => {
+const Footer = ({ active, info }) => {
 	return (
 		<footer className="bg-dark mt-auto">
 			<div className="p-4 d-flex flex-column flex-md-row flex-wrap align-items-center align-items-md-start justify-content-evenly text-light">
@@ -12,12 +12,12 @@ const Footer = ({ active }) => {
 					<p className="fs-5">Contact Info</p>
 					<ul className="list-unstyled fw-light">
 						<li className="py-2">
-							Address: 123 Apple Street <br />
-							Anywhere, Province <br />
-							12345
+							{info.address.street} <br />
+							{info.address.city}, {info.address.province} <br />
+							{info.address.postcode}
 						</li>
-						<li className="py-2">Phone: +44 02042 123456</li>
-						<li className="py-2">Email: test@test.com</li>
+						<li className="py-2">{info.phone}</li>
+						<li className="py-2">{info.email}</li>
 					</ul>
 				</div>
 				<div className="d-flex flex-column justify-content-evenly">

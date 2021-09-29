@@ -1,10 +1,10 @@
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 
-const donateComplete = (props) => {
+const donateComplete = ({ contactInfo }) => {
 	return (
 		<body className="vh-100 d-flex flex-column">
-			<NavBar />
+			<NavBar info={contactInfo} />
 			<div className="container w-50 py-3 h-50 d-flex flex-column justify-content-center">
 				<h1 className="text-center">Thank you for your donation!</h1>
 				<p className="text-center pt-3">
@@ -27,9 +27,28 @@ const donateComplete = (props) => {
 					</div>
 				</form>
 			</div>
-			<Footer />
+			<Footer info={contactInfo} />
 		</body>
 	);
 };
 
 export default donateComplete;
+
+export async function getStaticProps() {
+	const infoQuery = `*[_type == "contact"]{
+		email,
+		phone,
+		address,
+	  }`;
+	let contactData;
+
+	await client.fetch(infoQuery).then((res) => {
+		contactData = res;
+	});
+
+	return {
+		props: {
+			contactInfo: contactData[0],
+		},
+	};
+}

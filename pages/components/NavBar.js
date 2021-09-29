@@ -1,7 +1,7 @@
 import styles from "../../styles/components/NavBar.module.scss";
 import Link from "next/link";
 
-const NavBar = ({ active }) => {
+const NavBar = ({ active, info }) => {
 	return (
 		<div className="bg-light">
 			{/* Header bar to navbar */}
@@ -12,7 +12,7 @@ const NavBar = ({ active }) => {
 						href="tel:+447307504262"
 						className="text-black text-decoration-none"
 					>
-						Phone: +44 73075 04262
+						{info.phone}
 					</a>
 					<span>|</span>
 
@@ -20,7 +20,7 @@ const NavBar = ({ active }) => {
 						className="text-black text-decoration-none"
 						href="mailto:test@test.com?subject=Touching Base with World Eye Foundation"
 					>
-						Email: test@test.com
+						{info.email}
 					</a>
 					<span>|</span>
 					<div className="d-flex justify-content-evenly">

@@ -12,7 +12,7 @@ const client = sanityClient({
 	useCdn: true,
 });
 
-const ourTeam = ({ data }) => {
+const ourTeam = ({ data, contactInfo }) => {
 	let pgData = "";
 	if (data.length < 1)
 		pgData = (
@@ -37,13 +37,13 @@ const ourTeam = ({ data }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar active="team" />
+			<NavBar active="team" info={contactInfo} />
 			<h1 className="text-center pt-3">Our Team</h1>
 			<div className="d-flex justify-content-evenly flex-wrap">
 				{pgData}
 			</div>
 
-			<Footer />
+			<Footer info={contactInfo} />
 		</div>
 	);
 };
@@ -63,9 +63,21 @@ export async function getStaticProps() {
 		data = res;
 	});
 
+	const infoQuery = `*[_type == "contact"]{
+		email,
+		phone,
+		address,
+	  }`;
+	let contactData;
+
+	await client.fetch(infoQuery).then((res) => {
+		contactData = res;
+	});
+
 	return {
 		props: {
 			data: data,
+			contactInfo: contactData[0],
 		},
 	};
 }

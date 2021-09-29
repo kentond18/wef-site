@@ -5,7 +5,7 @@ import Script from "next/script";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 
-const Donate = (props) => {
+const Donate = ({ contactInfo }) => {
 	return (
 		<div>
 			<Head>
@@ -21,15 +21,34 @@ const Donate = (props) => {
 				/>
 			</Head>
 			<Script src="https://js.paystack.co/v1/inline.js"></Script>
-			<body className="vh-100 d-flex flex-column">
-				<NavBar active="donate" />
+			<div className="vh-100 d-flex flex-column">
+				<NavBar active="donate" info={contactInfo} />
 				<div className="align-self-center h-75 d-flex flex-column justify-content-center">
 					<DonateBlock />
 				</div>
-				<Footer active="donate" />
-			</body>
+				<Footer active="donate" info={contactInfo} />
+			</div>
 		</div>
 	);
 };
 
 export default Donate;
+
+export async function getStaticProps() {
+	const infoQuery = `*[_type == "contact"]{
+		email,
+		phone,
+		address,
+	  }`;
+	let contactData;
+
+	await client.fetch(infoQuery).then((res) => {
+		contactData = res;
+	});
+
+	return {
+		props: {
+			contactInfo: contactData[0],
+		},
+	};
+}

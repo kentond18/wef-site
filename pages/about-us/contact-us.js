@@ -1,8 +1,17 @@
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
+import sanityClient from "@sanity/client";
 
-const contactUs = (props) => {
+const client = sanityClient({
+	projectId: "0te03ffb",
+	dataset: "production",
+	apiVersion: "2021-09-28",
+	token: process.env.SANITY_TOKEN,
+	useCdn: true,
+});
+
+const contactUs = ({ contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -13,7 +22,7 @@ const contactUs = (props) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar active="contact" />
+			<NavBar active="contact" info={contactInfo} />
 			<h1 className="text-center pt-3">Contact Us</h1>
 			<form className="container col-10 pb-3 col-md-8 col-lg-6 col-xl-4">
 				<div className="mb-3">
@@ -62,9 +71,28 @@ const contactUs = (props) => {
 				</button>
 			</form>
 
-			<Footer active="contact" />
+			<Footer active="contact" info={contactInfo} />
 		</div>
 	);
 };
 
 export default contactUs;
+
+export async function getStaticProps() {
+	const infoQuery = `*[_type == "contact"]{
+		email,
+		phone,
+		address,
+	  }`;
+	let contactData;
+
+	await client.fetch(infoQuery).then((res) => {
+		contactData = res;
+	});
+
+	return {
+		props: {
+			contactInfo: contactData[0],
+		},
+	};
+}
