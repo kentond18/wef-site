@@ -2,7 +2,7 @@ import styles from "../../styles/components/NavBar.module.scss";
 import Link from "next/link";
 
 const NavBar = ({ active, info }) => {
-	if (info) {
+	if (!info) {
 		return (
 			<div className="bg-light">
 				{/* Header bar to navbar */}
