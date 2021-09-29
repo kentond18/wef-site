@@ -15,6 +15,10 @@ const Donate = (props) => {
 					name="viewport"
 					content="initial-scale=1.0, width=device-width"
 				/>
+				<meta
+					name="description"
+					content="Donate to Support World Eye Foundation"
+				/>
 			</Head>
 			<Script src="https://js.paystack.co/v1/inline.js"></Script>
 			<body className="vh-100 d-flex flex-column">

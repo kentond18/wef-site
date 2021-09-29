@@ -107,7 +107,7 @@ const NavBar = ({ active }) => {
 									</Link>
 								</li>
 								<li>
-									<Link href="/about-us/mission-and-vision">
+									<Link href="/about-us/vision-and-mission">
 										<a
 											className={`nav-link ps-2 ${
 												active == "mission"
@@ -120,7 +120,7 @@ const NavBar = ({ active }) => {
 									</Link>
 								</li>
 								<li>
-									<Link href="#">
+									<Link href="/about-us/our-team">
 										<a
 											className={`nav-link ps-2 ${
 												active == "team"

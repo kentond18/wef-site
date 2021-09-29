@@ -23,11 +23,11 @@ const Footer = ({ active }) => {
 				<div className="d-flex flex-column justify-content-evenly">
 					<p className="fs-5">Important Links</p>
 					<ul className="list-unstyled fw-light">
-						<Link href="/about" passHref>
+						<Link href="/about-us/history" passHref>
 							<a className="text-reset text-decoration-none">
 								<li
 									className={`py-2 footer-link ${
-										active == "about" ? active : null
+										active == "about" ? "active" : null
 									}`}
 									id="about-us"
 								>

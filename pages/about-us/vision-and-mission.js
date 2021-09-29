@@ -2,8 +2,9 @@ import SanityBlockContent from "@sanity/block-content-to-react";
 import sanityClient from "@sanity/client";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import Head from "next/head";
 
-const missionAndVision = ({ data }) => {
+const visionAndMission = ({ data }) => {
 	const BlockRenderer = (props) => {
 		const { style = "normal" } = props.node;
 
@@ -21,6 +22,14 @@ const missionAndVision = ({ data }) => {
 
 	return (
 		<div className="vh-100 d-flex flex-column">
+			<Head>
+				<title>Vision & Mission - World Eye Foundation</title>
+				<meta
+					name="description"
+					content="Vision and Mission - World Eye Foundation"
+				/>
+				<link rel="icon" href="/wef_icon.png" />
+			</Head>
 			<NavBar active="mission" />
 			<div className="container">
 				<h1 className="text-center pt-3">{data.header}</h1>
@@ -35,7 +44,7 @@ const missionAndVision = ({ data }) => {
 	);
 };
 
-export default missionAndVision;
+export default visionAndMission;
 
 export async function getStaticProps() {
 	const client = sanityClient({

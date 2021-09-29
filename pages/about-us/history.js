@@ -1,11 +1,20 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import Head from "next/head";
 import sanityClient from "@sanity/client";
 import SanityBlockContent from "@sanity/block-content-to-react";
 
 const history = ({ data }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
+			<Head>
+				<title>History - World Eye Foundation</title>
+				<meta
+					name="description"
+					content="History - World Eye Foundation"
+				/>
+				<link rel="icon" href="/wef_icon.png" />
+			</Head>
 			<NavBar active="history" />
 			<div className="container">
 				<h1 className="text-center pt-3">{data.header}</h1>
@@ -16,7 +25,7 @@ const history = ({ data }) => {
 				<SanityBlockContent blocks={data.content} />
 			</div>
 
-			<Footer />
+			<Footer active="about" />
 		</div>
 	);
 };
