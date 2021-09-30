@@ -3,7 +3,7 @@ import styles from "../styles/Home.module.scss";
 import MainJumbotron from "./components/Index/MainJumbotron.js";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import client from "./components/sanityClientConstructor";
+import client from "../config/sanityClientConstructor";
 
 export default function Home({ contactInfo }) {
 	return (

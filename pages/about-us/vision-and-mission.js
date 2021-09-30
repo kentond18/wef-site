@@ -2,7 +2,7 @@ import SanityBlockContent from "@sanity/block-content-to-react";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
-import client from "../components/sanityClientConstructor";
+import client from "../../config/sanityClientConstructor";
 
 const visionAndMission = ({ data, contactInfo }) => {
 	const BlockRenderer = (props) => {

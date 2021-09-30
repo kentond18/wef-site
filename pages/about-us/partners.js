@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import BioCard from "../components/BioCard";
-import client from "../components/sanityClientConstructor";
+import client from "../../config/sanityClientConstructor";
 
 const partners = ({ data, contactInfo }) => {
 	let pgData = "";

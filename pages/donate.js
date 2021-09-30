@@ -4,7 +4,7 @@ import Head from "next/head";
 import Script from "next/script";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import client from "./components/sanityClientConstructor";
+import client from "../config/sanityClientConstructor";
 
 const Donate = ({ contactInfo }) => {
 	return (

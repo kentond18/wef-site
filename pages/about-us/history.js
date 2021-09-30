@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import client from "../components/sanityClientConstructor";
+import client from "../../config/sanityClientConstructor";
 import SanityBlockContent from "@sanity/block-content-to-react";
 
 const history = ({ data, contactInfo }) => {

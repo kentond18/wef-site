@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import client from "../components/sanityClientConstructor";
+import client from "../../config/sanityClientConstructor";
 import BioCard from "../components/BioCard";
 
 const ourTeam = ({ data, contactInfo }) => {
