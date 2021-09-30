@@ -1,17 +1,23 @@
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-import sanityClient from "@sanity/client";
-
-const client = sanityClient({
-	projectId: "0te03ffb",
-	dataset: "production",
-	apiVersion: "2021-09-28",
-	useCdn: true,
-});
+import Head from "next/head";
+import client from "./components/sanityClientConstructor";
 
 const donateComplete = ({ contactInfo }) => {
 	return (
-		<body className="vh-100 d-flex flex-column">
+		<div className="vh-100 d-flex flex-column">
+			<Head>
+				<title>Thank you! - World Eye Foundation</title>
+				<meta charSet="utf-8" />
+				<meta
+					name="viewport"
+					content="initial-scale=1.0, width=device-width"
+				/>
+				<meta
+					name="description"
+					content="Thank you for your support! - World Eye Foundation"
+				/>
+			</Head>
 			<NavBar info={contactInfo} />
 			<div className="container w-50 py-3 h-50 d-flex flex-column justify-content-center">
 				<h1 className="text-center">Thank you for your donation!</h1>
@@ -36,7 +42,7 @@ const donateComplete = ({ contactInfo }) => {
 				</form>
 			</div>
 			<Footer info={contactInfo} />
-		</body>
+		</div>
 	);
 };
 

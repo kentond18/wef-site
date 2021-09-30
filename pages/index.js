@@ -3,14 +3,7 @@ import styles from "../styles/Home.module.scss";
 import MainJumbotron from "./components/Index/MainJumbotron.js";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import sanityClient from "@sanity/client";
-
-const client = sanityClient({
-	projectId: "0te03ffb",
-	dataset: "production",
-	apiVersion: "2021-09-28",
-	useCdn: true,
-});
+import client from "./components/sanityClientConstructor";
 
 export default function Home({ contactInfo }) {
 	return (

@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import sanityClient from "@sanity/client";
+import client from "../components/sanityClientConstructor";
 import SanityBlockContent from "@sanity/block-content-to-react";
 
 const history = ({ data, contactInfo }) => {
@@ -33,13 +33,12 @@ const history = ({ data, contactInfo }) => {
 export default history;
 
 export async function getStaticProps() {
-	const client = sanityClient({
-		projectId: "0te03ffb",
-		dataset: "production",
-		apiVersion: "2021-09-28",
-		token: process.env.SANITY_TOKEN,
-		useCdn: true,
-	});
+	// const client = sanityClient({
+	// 	projectId: "0te03ffb",
+	// 	dataset: "production",
+	// 	apiVersion: "2021-09-28",
+	// 	useCdn: true,
+	// });
 	const query = `*[_type == "article" && references(*[_type == 'section' && sectionName == 'History']._id)]{
 		title,
 		"header": section->sectionName,

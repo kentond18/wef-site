@@ -4,14 +4,7 @@ import Head from "next/head";
 import Script from "next/script";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import sanityClient from "@sanity/client";
-
-const client = sanityClient({
-	projectId: "0te03ffb",
-	dataset: "production",
-	apiVersion: "2021-09-28",
-	useCdn: true,
-});
+import client from "./components/sanityClientConstructor";
 
 const Donate = ({ contactInfo }) => {
 	return (

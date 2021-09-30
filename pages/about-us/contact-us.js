@@ -1,14 +1,7 @@
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
-import sanityClient from "@sanity/client";
-
-const client = sanityClient({
-	projectId: "0te03ffb",
-	dataset: "production",
-	apiVersion: "2021-09-28",
-	useCdn: true,
-});
+import client from "../components/sanityClientConstructor";
 
 const contactUs = ({ contactInfo }) => {
 	return (
