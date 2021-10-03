@@ -52,7 +52,12 @@ const NavBar = ({ active, info }) => {
 					</div>
 				</div>
 				<div>
-					<span>Subscribe Now</span>
+					<a
+						href="#emailInput"
+						className="text-black text-decoration-none"
+					>
+						Subscribe Now
+					</a>
 				</div>
 			</div>
 

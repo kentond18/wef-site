@@ -12,6 +12,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^2.19.0",
     "@sanity/image-url": "^1.0.1",
+    "axios": "^0.22.0",
     "bootstrap": "^5.1.1",
     "bootstrap-icons": "^1.5.0",
     "next": "^11.1.2",
