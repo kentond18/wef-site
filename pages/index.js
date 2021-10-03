@@ -16,7 +16,7 @@ export default function Home({ contactInfo }) {
 			<div className="vh-100 d-flex flex-column">
 				<NavBar active="home" info={contactInfo} />
 
-				<MainJumbotron />
+				<MainJumbotron data={contactInfo} />
 
 				<Footer active="home" info={contactInfo} />
 			</div>
@@ -29,6 +29,7 @@ export async function getStaticProps() {
 		email,
 		phone,
 		address,
+		taglineText,
 	  }`;
 	let contactData;
 
