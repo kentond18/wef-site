@@ -37,13 +37,13 @@ const MainJumbotron = ({ data }) => {
 				<div className="d-flex align-items-center justify-content-center w-75 flex-column flex-md-row">
 					<button className="btn btn-primary px-4 py-2">
 						<Link href="/donate">
-							<a className="text-dark text-decoration-none">
+							<a className="text-white text-decoration-none">
 								Donate
 							</a>
 						</Link>
 					</button>
 					<a
-						className="px-3 text-secondary fw-lighter"
+						className="px-3 text-secondary fw-lighter py-3 py-md-0"
 						href={`tel:${data.phone}`}
 					>
 						<i className="bi bi-telephone text-secondary pe-1"></i>
