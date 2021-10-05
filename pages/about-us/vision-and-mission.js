@@ -30,7 +30,7 @@ const visionAndMission = ({ data, contactInfo }) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar active="mission" info={contactInfo} />
+			<NavBar active="vision-and-mission" info={contactInfo} />
 			<div className="container">
 				<h1 className="text-center pt-3">{data.header}</h1>
 				<SanityBlockContent
