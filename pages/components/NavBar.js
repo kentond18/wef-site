@@ -66,7 +66,9 @@ const NavBar = ({ active, info }) => {
 			<nav className="navbar navbar-expand-lg navbar-light shadow sticky-top">
 				<div className="container-fluid">
 					<Link href="/">
-						<a className="navbar-brand">World Eye Foundation</a>
+						<a className="navbar-brand fw-bolder fs-2">
+							World Eye Foundation
+						</a>
 					</Link>
 					<button
 						className="navbar-toggler border-0"

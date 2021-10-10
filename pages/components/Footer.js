@@ -1,7 +1,44 @@
 import styles from "../../styles/components/Footer.module.scss";
 import Link from "next/link";
+import { useState } from "react";
+import axios from "axios";
 
 const Footer = ({ active, info }) => {
+	const [email, setEmail] = useState("");
+
+	const onClickHandler = async (e) => {
+		e.preventDefault();
+
+		await axios
+			.post("/api/newsletter", {
+				email: email,
+			})
+			.then((response) => {
+				console.log(response);
+				if (response.status == 200) {
+					// Clear input field
+					setEmail("");
+					// Display confirmation of sign up and inform user to check email
+					document
+						.getElementById("confirmationText")
+						.classList.remove("d-none");
+				} else {
+					// Clear input field
+					setEmail("");
+					// Display error message and inform to try again
+					document
+						.getElementById("errorText")
+						.classList.remove("d-none");
+				}
+			});
+	};
+
+	const onChangeHandler = (e) => {
+		if (e.target.name == "emailAddress") {
+			setEmail(e.target.value);
+		}
+	};
+
 	if (!info) {
 		info = {
 			address: {
@@ -92,6 +129,20 @@ const Footer = ({ active, info }) => {
 					<div className="fs-5 pb-2">Newsletter</div>
 					<div className="fw-light pb-3">
 						Sign up for updates of our upcoming projects
+						<div
+							className="text-center fw-normal pt-2 text-primary d-none"
+							id="confirmationText"
+						>
+							Sign up complete!
+							<br /> Check your email to confirm subscription.
+						</div>
+						<div
+							className="text-center fw-normal pt-2 text-warning d-none"
+							id="errorText"
+						>
+							There was an error with the sign up! <br />
+							Please refresh the page and try again.
+						</div>
 					</div>
 					<form>
 						<div className="input-group">
@@ -101,12 +152,14 @@ const Footer = ({ active, info }) => {
 								name="emailAddress"
 								id="emailInput"
 								placeholder="Email address"
+								value={email}
 								required
+								onChange={onChangeHandler}
 							/>
 							<button
 								className="btn btn-primary"
 								type="submit"
-								onSubmit={(data) => console.log(data)}
+								onClick={onClickHandler}
 							>
 								<i className="bi bi-envelope"></i>
 							</button>
