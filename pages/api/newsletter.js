@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 		// -> if the email subscription status “subscribed”
 		if (response.status == "subscribed") {
 			// -> return to site, “user subscribed”
-			res.send(200).send("User already subscribed");
+			res.status(200).send("User already subscribed");
 		} else {
 			// -> else
 			// -> remove email from database, and resubscribe user to status pending and return to site “user pending
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
 				}
 			} catch (error) {
 				// Error removing contact
-				res.send(504).send("Error unsubscribing contact");
+				res.status(504).send("Error unsubscribing contact");
 			}
 		}
 	} catch (error) {
