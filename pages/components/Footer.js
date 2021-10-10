@@ -9,28 +9,29 @@ const Footer = ({ active, info }) => {
 	const onClickHandler = async (e) => {
 		e.preventDefault();
 
-		await axios
-			.post("/api/newsletter", {
-				email: email,
-			})
-			.then((response) => {
-				console.log(response);
-				if (response.status == 200) {
-					// Clear input field
-					setEmail("");
-					// Display confirmation of sign up and inform user to check email
-					document
-						.getElementById("confirmationText")
-						.classList.remove("d-none");
-				} else {
-					// Clear input field
-					setEmail("");
-					// Display error message and inform to try again
-					document
-						.getElementById("errorText")
-						.classList.remove("d-none");
-				}
-			});
+		try {
+			await axios
+				.post("/api/newsletter", {
+					email: email,
+				})
+				.then((response) => {
+					console.log(response);
+					if (response.status == 200) {
+						// Clear input field
+						setEmail("");
+						// Display confirmation of sign up and inform user to check email
+						document
+							.getElementById("confirmationText")
+							.classList.remove("d-none");
+					}
+				});
+		} catch (error) {
+			console.log(error);
+			// Clear input field
+			setEmail("");
+			// Display error message and inform to try again
+			document.getElementById("errorText").classList.remove("d-none");
+		}
 	};
 
 	const onChangeHandler = (e) => {
