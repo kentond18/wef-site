@@ -7,8 +7,10 @@ const Footer = ({ active, info }) => {
 	const [email, setEmail] = useState("");
 
 	const onClickHandler = async (e) => {
+		// Prevent default button action
 		e.preventDefault();
 
+		// Form submit operation
 		try {
 			await axios
 				.post("/api/newsletter", {
