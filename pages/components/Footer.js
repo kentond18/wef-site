@@ -150,10 +150,18 @@ const Footer = ({ active, info }) => {
 						</div>
 						<div
 							className="text-center fw-normal pt-2 text-warning d-none"
-							id="errorText"
+							id="serverErrorText"
 						>
 							There was an error with the sign up! <br />
 							Please refresh the page and try again.
+						</div>
+						<div
+							className="text-center fw-normal pt-2 text-warning d-none"
+							id="emailErrorText"
+						>
+							You&apos;re already a member! <br />
+							Enter a different email or unsubscribe and
+							resubscribe.
 						</div>
 					</div>
 					<form>
