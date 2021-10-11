@@ -41,7 +41,9 @@ const Footer = ({ active, info }) => {
 			// Clear input field
 			setEmail("");
 			// Display error message and inform to try again
-			document.getElementById("errorText").classList.remove("d-none");
+			document
+				.getElementById("serverErrorText")
+				.classList.remove("d-none");
 		}
 	};
 
