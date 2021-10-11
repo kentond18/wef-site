@@ -17,12 +17,23 @@ const Footer = ({ active, info }) => {
 				.then((response) => {
 					console.log(response);
 					if (response.status == 200) {
-						// Clear input field
-						setEmail("");
-						// Display confirmation of sign up and inform user to check email
-						document
-							.getElementById("confirmationText")
-							.classList.remove("d-none");
+						switch (response.data.info) {
+							case "User already subscribed":
+								setEmail("");
+								document
+									.getElementById("emailErrorText")
+									.classList.remove("d-none");
+								break;
+							case "User added":
+								setEmail("");
+								document
+									.getElementById("confirmationText")
+									.classList.remove("d-none");
+								break;
+
+							default:
+								break;
+						}
 					}
 				});
 		} catch (error) {
