@@ -15,11 +15,11 @@ const ProjectPartner = ({ contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar info={contactInfo} active={"project-partner"} />
+			<NavBar info={contactInfo} active="project-partner" />
 
 			<div className=""></div>
 
-			<Footer info={contactInfo} active={"project-partner"} />
+			<Footer info={contactInfo} active="project-partner" />
 		</div>
 	);
 };

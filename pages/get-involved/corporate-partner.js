@@ -15,11 +15,11 @@ const CorporatePartner = ({ contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar info={contactInfo} active={"corporate-partner"} />
+			<NavBar info={contactInfo} active="corporate-partner" />
 
 			<div className=""></div>
 
-			<Footer info={contactInfo} active={"corporate-partner"} />
+			<Footer info={contactInfo} active="corporate-partner" />
 		</div>
 	);
 };
