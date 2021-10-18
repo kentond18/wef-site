@@ -10,22 +10,45 @@ export default async function handler(req, res) {
 
 	const addUser = async (email, step) => {
 		try {
-			const response = await mailchimp.lists.updateListMember(
-				listID,
-				md5(email.toLowerCase()),
-				{
-					email_address: email,
-					status: "pending",
-				}
-			);
-			res.status(200).json({
-				info: "User added",
-			});
+			switch (step) {
+				case 1:
+					await mailchimp.lists
+						.updateListMember(listID, md5(email.toLowerCase()), {
+							email_address: email,
+							status: "subscribed",
+						})
+						.then((response) => {
+							res.status(200).send(
+								JSON.stringify({
+									info: "User added",
+								})
+							);
+						});
+					break;
+				case 2:
+					await mailchimp.lists
+						.addListMember(listID, {
+							email_address: email,
+							status: "subscribed",
+						})
+						.then((reponse) => {
+							res.status(200).send(
+								JSON.stringify({
+									info: "User added",
+								})
+							);
+						});
+
+				default:
+					break;
+			}
 		} catch (error) {
 			// Error adding email to list
 			console.log(step);
 			console.log(error);
-			res.status(504).json({ info: "Error adding user to email list." });
+			res.status(504).send(
+				JSON.stringify({ info: "Error adding user to email list." })
+			);
 		}
 	};
 
@@ -42,7 +65,9 @@ export default async function handler(req, res) {
 		// -> if the email subscription status “subscribed”
 		if (response.status == "subscribed") {
 			// -> return to site, “user subscribed”
-			res.status(200).json({ info: "User already subscribed" });
+			res.status(200).send(
+				JSON.stringify({ info: "User already subscribed" })
+			);
 		} else {
 			// -> else
 			// -> remove email from database, and resubscribe user to status pending and return to site “user pending
@@ -54,13 +79,14 @@ export default async function handler(req, res) {
 						status: "unsubscribed",
 					}
 				);
-				console.log(response);
 				if (response.status == "unsubscribed") {
 					addUser(userEmail, 1);
 				}
 			} catch (error) {
 				// Error removing contact
-				res.status(504).json({ info: "Error unsubscribing contact" });
+				res.status(504).send(
+					JSON.stringify({ info: "Error unsubscribing contact" })
+				);
 			}
 		}
 	} catch (error) {
@@ -69,7 +95,7 @@ export default async function handler(req, res) {
 			// -> Add email to list
 			addUser(userEmail, 2);
 		} else {
-			res.status(504).json({ info: "Server error" });
+			res.status(504).send(JSON.stringify({ info: "Server error" }));
 		}
 	}
 }

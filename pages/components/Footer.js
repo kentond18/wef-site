@@ -17,7 +17,6 @@ const Footer = ({ active, info }) => {
 					email: email,
 				})
 				.then((response) => {
-					console.log(response);
 					if (response.status == 200) {
 						switch (response.data.info) {
 							case "User already subscribed":
@@ -150,7 +149,7 @@ const Footer = ({ active, info }) => {
 							id="confirmationText"
 						>
 							Sign up complete!
-							<br /> Check your email to confirm subscription.
+							<br /> Check your email to confirm sign up.
 						</div>
 						<div
 							className="text-center fw-normal pt-2 text-warning d-none"
