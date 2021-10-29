@@ -10,6 +10,7 @@ const ContactUs = ({ contactInfo }) => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
+	const [disabled, setDisabled] = useState(false);
 
 	const onChangeHandler = (e) => {
 		switch (e.target.id) {
@@ -29,6 +30,7 @@ const ContactUs = ({ contactInfo }) => {
 
 	const onClickHandler = async (e) => {
 		e.preventDefault();
+		setDisabled(true);
 
 		await axios
 			.post("/api/contact", {
@@ -44,6 +46,7 @@ const ContactUs = ({ contactInfo }) => {
 					document
 						.getElementById("errorMsg")
 						.classList.remove("visually-hidden");
+					setDisabled(false);
 				}
 			});
 	};
@@ -115,6 +118,7 @@ const ContactUs = ({ contactInfo }) => {
 					type="submit"
 					className="btn btn-primary text-white"
 					onClick={onClickHandler}
+					disabled={disabled}
 				>
 					Submit
 				</button>

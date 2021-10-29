@@ -5,10 +5,12 @@ import axios from "axios";
 
 const Footer = ({ active, info }) => {
 	const [email, setEmail] = useState("");
+	const [disabled, setDisabled] = useState(false);
 
 	const onClickHandler = async (e) => {
 		// Prevent default button action
 		e.preventDefault();
+		setDisabled(true);
 
 		// Form submit operation
 		try {
@@ -24,12 +26,14 @@ const Footer = ({ active, info }) => {
 								document
 									.getElementById("emailErrorText")
 									.classList.remove("d-none");
+								setDisabled(false);
 								break;
 							case "User added":
 								setEmail("");
 								document
 									.getElementById("confirmationText")
 									.classList.remove("d-none");
+								setDisabled(false);
 								break;
 
 							default:
@@ -45,6 +49,7 @@ const Footer = ({ active, info }) => {
 			document
 				.getElementById("serverErrorText")
 				.classList.remove("d-none");
+			setDisabled(false);
 		}
 	};
 
@@ -183,6 +188,7 @@ const Footer = ({ active, info }) => {
 								className="btn btn-primary"
 								type="submit"
 								onClick={onClickHandler}
+								disabled={disabled}
 							>
 								<i className="bi bi-envelope"></i>
 							</button>
