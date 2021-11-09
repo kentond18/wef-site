@@ -279,7 +279,7 @@ const NavBar = ({ active, info }) => {
 							>
 								<div className="bg-light">
 									<li>
-										<Link href="/get-involved/donate">
+										<Link href="/donate">
 											<a
 												className={`nav-link ps-2 ${
 													active == "donate"
