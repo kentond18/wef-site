@@ -1,35 +1,33 @@
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
+
+import { PaystackButton } from "react-paystack";
 import styles from "../../styles/components/DonateBlock.module.scss";
 
 const DonateBlock = (props) => {
 	const router = useRouter();
 	const [email, setEmail] = useState("");
 	const [amount, setAmount] = useState(0);
+	const [currency, setCurrency] = useState("USD");
 
-	const onChangeHandler = (e) => {
-		if (e.target.name == "amount") setAmount(e.target.value);
-		else setEmail(e.target.value);
+	const onSuccess = (ref) => {
+		router.push("/donate-complete");
+		console.log("Payment complete! Reference: " + ref.reference);
 	};
 
-	const startPayment = (e) => {
-		e.preventDefault();
+	const onClose = () => {
+		console.log("Closed payment window");
+	};
 
-		let handler = PaystackPop.setup({
-			key: "pk_test_50988ea6de4aa7a346924072a1d5974c42a88bbd",
-			email: email,
-			amount: amount * 100,
-			currency: "GHS",
-			onClose: () => {
-				console.log("Window closed");
-			},
-			callback: (res) => {
-				router.push("/donate-complete");
-				console.log("Payment complete! Reference: " + res.reference);
-			},
-		});
-
-		handler.openIframe();
+	const config = {
+		amount: amount * 100,
+		email,
+		currency,
+		reference: new Date().getTime().toString(),
+		publicKey: "pk_test_50988ea6de4aa7a346924072a1d5974c42a88bbd",
+		text: "Donate",
+		onSuccess,
+		onClose,
 	};
 
 	return (
@@ -37,7 +35,12 @@ const DonateBlock = (props) => {
 			<h1 className="card-title display-4 text-center text-secondary">
 				Donate today!
 			</h1>
-			<form className="card-body" onSubmit={startPayment}>
+			<form
+				className="card-body"
+				onSubmit={(e) => {
+					e.preventDefault();
+				}}
+			>
 				<div className="mb-3">
 					<label htmlFor="email-input" className="form-label">
 						Email:
@@ -50,7 +53,7 @@ const DonateBlock = (props) => {
 							required
 							className="form-control"
 							placeholder="janedoe@acme.com"
-							onChange={onChangeHandler}
+							onChange={(e) => setEmail(e.target.value)}
 						/>
 						<div className="invalid-feedback">
 							Please enter a valid email
@@ -66,27 +69,40 @@ const DonateBlock = (props) => {
 							className="input-group-text text-primary border-primary border-end-0"
 							id="donate-amount"
 						>
-							GHS
+							{currency}
 						</span>
+
 						<input
 							type="number"
 							name="amount"
 							id="amount"
 							required
 							className="form-control border-primary"
-							placeholder="5"
+							placeholder="Enter your amount here..."
 							aria-label="Amount"
 							aria-describedby="donate-amount"
-							onChange={onChangeHandler}
+							onChange={(e) => setAmount(e.target.value)}
 						/>
 					</div>
 				</div>
-				<button
-					className="btn btn-light btn-outline-primary"
-					type="submit"
-				>
-					Donate
-				</button>
+				<div className="mb-3">
+					<label htmlFor="currency" className="form-label">
+						Currency:
+					</label>
+					<select
+						className="form-select"
+						onChange={(e) => setCurrency(e.target.value)}
+					>
+						<option value="USD">USD</option>
+						<option value="ZAR">ZAR</option>
+						<option value="GHS">GHS</option>
+						<option value="NGN">NGN</option>
+					</select>
+				</div>
+				<PaystackButton
+					{...config}
+					className="btn btn-primary text-white w-50"
+				/>
 			</form>
 		</div>
 	);
