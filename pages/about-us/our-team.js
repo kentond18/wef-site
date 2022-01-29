@@ -46,6 +46,7 @@ export async function getStaticProps() {
 	const query = `*[_type == "bio" && references(*[_type == 'section' && sectionName == 'Our Team']._id)]{
 		name,
 		"imgURL": pic.asset->url,
+		pic,
 		position,
 		biography
 	  }`;
