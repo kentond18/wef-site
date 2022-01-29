@@ -41,11 +41,12 @@ export async function getStaticProps() {
 					latitude
 					longitude
 				}
+				taglineText
 			}
 		}
 	`;
 
-	const { contactInfos } = await graphcms.request();
+	const { contactInfos } = await graphcms.request(QUERY);
 
 	return {
 		props: {
