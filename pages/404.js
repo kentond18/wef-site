@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
+import { gql } from "graphql-request";
+import graphcms from "../config/graphCMSConfig";
 
 const Custom404 = ({ contactInfo }) => {
 	return (
