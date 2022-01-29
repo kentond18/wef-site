@@ -1,10 +1,6 @@
 import Image from "next/image";
-import SanityBlockContent from "@sanity/block-content-to-react";
-import imageUrlBuilder from "@sanity/image-url";
 
-const BioCard = ({ data, client }) => {
-	const imgBuilder = imageUrlBuilder(client);
-
+const BioCard = ({ data }) => {
 	if (!data) {
 		return (
 			<div className="display-3">
@@ -19,15 +15,9 @@ const BioCard = ({ data, client }) => {
 			style={{ width: "24rem" }}
 		>
 			<div className="card align-items-center pt-3">
-				<div className="">
+				<div>
 					<Image
-						src={imgBuilder
-							.image(data.imgURL)
-							.width(200)
-							.height(200)
-							.fit("min")
-							.crop("focalpoint")
-							.url()}
+						src={data.profilePicture.url}
 						alt={`Image of ${data.name}`}
 						height={200}
 						width={200}
@@ -40,10 +30,9 @@ const BioCard = ({ data, client }) => {
 						{data.position}
 					</p>
 					<div className="text-center">
-						<SanityBlockContent
-							blocks={data.biography}
-							className="card-text"
-						/>
+						<div className="card-text">
+							{data.smallProfileBlurb}
+						</div>
 					</div>
 				</div>
 			</div>
