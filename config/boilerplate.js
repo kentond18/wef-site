@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Footer from "../pages/components/Footer";
 import NavBar from "../pages/components/NavBar";
-import client from "./sanityClientConstructor";
+import { gql } from "graphql-request";
+import { graphcms } from "./graphCMSConfig";
 
 const Boilerplate = ({ contactInfo }) => {
 	return (
@@ -29,21 +30,26 @@ const Boilerplate = ({ contactInfo }) => {
 export default Boilerplate;
 
 export async function getStaticProps() {
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-		taglineText,
-	  }`;
-	let contactData;
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+			}
+		}
+	`;
 
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { contactInfos } = await graphcms.request();
 
 	return {
 		props: {
-			contactInfo: contactData[0],
+			contactInfo: contactInfos[0],
 		},
 	};
 }
