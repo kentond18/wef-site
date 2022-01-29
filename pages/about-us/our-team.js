@@ -1,22 +1,24 @@
 import Head from "next/head";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import client from "../../config/sanityClientConstructor";
+import { gql } from "graphql-request";
+import graphcms from "../../config/graphCMSConfig";
 import BioCard from "../components/BioCard";
 
-const ourTeam = ({ data, contactInfo }) => {
+const ourTeam = ({ profiles, contactInfo }) => {
 	let pgData = "";
-	if (data.length < 1)
+	if (!profiles) {
 		pgData = (
 			<div className="display-3 text-center pt-5">
 				Unfortunately, this page is currently getting updated. Please
 				check back soon.
 			</div>
 		);
-	else
-		pgData = data.map((e, i) => {
-			return <BioCard data={e} client={client} key={i} />;
+	} else {
+		pgData = profiles.map((e, i) => {
+			return <BioCard data={e} key={i} />;
 		});
+	}
 
 	return (
 		<div className="vh-100 d-flex flex-column">
@@ -43,34 +45,49 @@ const ourTeam = ({ data, contactInfo }) => {
 export default ourTeam;
 
 export async function getStaticProps() {
-	const query = `*[_type == "bio" && references(*[_type == 'section' && sectionName == 'Our Team']._id)]{
-		name,
-		"imgURL": pic.asset->url,
-		pic,
-		position,
-		biography
-	  }`;
-	let data;
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+				taglineText
+			}
+		}
+	`;
 
-	await client.fetch(query).then((res) => {
-		data = res;
-	});
+	const { contactInfos } = await graphcms.request(QUERY);
 
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-	  }`;
-	let contactData;
+	const QUERY2 = gql`
+		query MyQuery {
+			profiles(where: { sectionOfSite: Our_Team }) {
+				smallProfileBlurb
+				sectionOfSite
+				profilePicture {
+					url
+					width
+					height
+				}
+				name
+				postiion
+				fullBiography {
+					html
+				}
+			}
+		}
+	`;
 
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { profiles } = await graphcms.request(QUERY2);
 
 	return {
 		props: {
-			data: data,
-			contactInfo: contactData[0],
+			profiles,
+			contactInfo: contactInfos[0],
 		},
 	};
 }
