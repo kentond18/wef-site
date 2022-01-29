@@ -3,8 +3,9 @@ import styles from "../styles/Home.module.scss";
 import MainJumbotron from "./components/Index/MainJumbotron.js";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import client from "../config/sanityClientConstructor";
 import Header from "./components/Header";
+import { gql } from "graphql-request";
+import graphcms from "../config/graphCMSConfig";
 
 export default function Home({ contactInfo }) {
 	return (
@@ -25,21 +26,27 @@ export default function Home({ contactInfo }) {
 }
 
 export async function getStaticProps() {
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-		taglineText,
-	  }`;
-	let contactData;
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+				taglineText
+			}
+		}
+	`;
 
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { contactInfos } = await graphcms.request(QUERY);
 
 	return {
 		props: {
-			contactInfo: contactData[0],
+			contactInfo: contactInfos[0],
 		},
 	};
 }
