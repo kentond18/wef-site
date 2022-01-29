@@ -67,11 +67,18 @@ const Footer = ({ active, info }) => {
 				province: "Test Province",
 				postcode: "12345",
 			},
-			phone: "+44 000 000 0000",
+			phonNumber: "+44 000 000 0000",
 			email: "test@email.com",
 		};
 	}
 
+	const address = (
+		<>
+			{info.address.street} <br />
+			{info.address.city}, {info.address.province} <br />
+			{info.address.postcode}
+		</>
+	);
 	return (
 		<footer className="bg-dark mt-auto">
 			<div className="p-4 d-flex flex-column flex-md-row flex-wrap align-items-center align-items-md-start justify-content-evenly text-light">
@@ -81,12 +88,10 @@ const Footer = ({ active, info }) => {
 				<div className="d-flex flex-column justify-content-evenly">
 					<p className="fs-5">Contact Info</p>
 					<ul className="list-unstyled fw-light">
-						<li className="py-2">
-							{info.address.street} <br />
-							{info.address.city}, {info.address.province} <br />
-							{info.address.postcode}
+						<li className="py-2" style={{ width: "12rem" }}>
+							{info.fullAddress || address}
 						</li>
-						<li className="py-2">{info.phone}</li>
+						<li className="py-2">{info.phoneNumber}</li>
 						<li className="py-2">{info.email}</li>
 					</ul>
 				</div>
