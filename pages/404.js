@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-import client from "../config/sanityClientConstructor";
 
 const Custom404 = ({ contactInfo }) => {
 	return (
@@ -30,21 +29,27 @@ const Custom404 = ({ contactInfo }) => {
 export default Custom404;
 
 export async function getStaticProps() {
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-		taglineText,
-	  }`;
-	let contactData;
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+				taglineText
+			}
+		}
+	`;
 
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { contactInfos } = await graphcms.request(QUERY);
 
 	return {
 		props: {
-			contactInfo: contactData[0],
+			contactInfo: contactInfos[0],
 		},
 	};
 }
