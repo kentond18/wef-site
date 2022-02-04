@@ -1,7 +1,8 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import client from "../../config/sanityClientConstructor";
+import graphcms from "../config/graphCMSConfig.js";
+import { gql } from "graphql-request";
 import SanityBlockContent from "@sanity/block-content-to-react";
 
 const history = ({ data, contactInfo }) => {

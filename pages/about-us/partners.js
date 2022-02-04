@@ -2,7 +2,8 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import BioCard from "../components/BioCard";
-import client from "../../config/sanityClientConstructor";
+import graphcms from "../config/graphCMSConfig.js";
+import { gql } from "graphql-request";
 
 const partners = ({ data, contactInfo }) => {
 	let pgData = "";

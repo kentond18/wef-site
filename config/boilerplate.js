@@ -2,7 +2,7 @@ import Head from "next/head";
 import Footer from "../pages/components/Footer";
 import NavBar from "../pages/components/NavBar";
 import { gql } from "graphql-request";
-import { graphcms } from "./graphCMSConfig";
+import graphcms from "./graphCMSConfig";
 
 const Boilerplate = ({ contactInfo }) => {
 	return (

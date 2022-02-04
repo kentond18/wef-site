@@ -1,7 +1,8 @@
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
-import client from "../../config/sanityClientConstructor";
+import graphcms from "../config/graphCMSConfig.js";
+import { gql } from "graphql-request";
 import { useState } from "react";
 import router from "next/router";
 import axios from "axios";

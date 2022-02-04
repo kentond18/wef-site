@@ -2,7 +2,8 @@ import SanityBlockContent from "@sanity/block-content-to-react";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
-import client from "../../config/sanityClientConstructor";
+import graphcms from "../config/graphCMSConfig.js";
+import { gql } from "graphql-request";
 
 const visionAndMission = ({ data, contactInfo }) => {
 	const BlockRenderer = (props) => {
