@@ -33,6 +33,8 @@ const history = ({ data, contactInfo }) => {
 
 export default history;
 
+// TODO: Refactor this fetch from the CMS
+
 export async function getStaticProps() {
 	// const client = sanityClient({
 	// 	projectId: "0te03ffb",

@@ -43,6 +43,8 @@ const partners = ({ data, contactInfo }) => {
 
 export default partners;
 
+// TODO: Refactor this fetch from the CMS
+
 export async function getStaticProps() {
 	const query = `*[_type == "bio" && references(*[_type == 'section' && sectionName == 'Partners']._id)]{
 		name,

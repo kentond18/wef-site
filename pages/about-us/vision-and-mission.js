@@ -47,6 +47,7 @@ const visionAndMission = ({ data, contactInfo }) => {
 
 export default visionAndMission;
 
+// TODO: Refactor this fetch from the CMS
 export async function getStaticProps() {
 	const query = `*[_type == "article" && references(*[_type == 'section' && sectionName == 'Vision and Mission']._id)]{
 		title,

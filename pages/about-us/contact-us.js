@@ -141,20 +141,27 @@ const ContactUs = ({ contactInfo }) => {
 export default ContactUs;
 
 export async function getStaticProps() {
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-	  }`;
-	let contactData;
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+				taglineText
+			}
+		}
+	`;
 
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { contactInfos } = await graphcms.request(QUERY);
 
 	return {
 		props: {
-			contactInfo: contactData[0],
+			contactInfo: contactInfos[0],
 		},
 	};
 }
