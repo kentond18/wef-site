@@ -1,24 +1,16 @@
-import SanityBlockContent from "@sanity/block-content-to-react";
+import React from "react";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
 import Head from "next/head";
-import graphcms from "../config/graphCMSConfig.js";
+import graphcms from "../../config/graphCMSConfig.js";
 import { gql } from "graphql-request";
+import { RichText } from "@graphcms/rich-text-react-renderer";
 
 const visionAndMission = ({ data, contactInfo }) => {
-	const BlockRenderer = (props) => {
-		const { style = "normal" } = props.node;
+	const article = data[0];
 
-		if (style === "blockquote") {
-			return (
-				<blockquote className="blockquote">
-					<p>{props.children}</p>
-				</blockquote>
-			);
-		}
-
-		// Fall back to default handling
-		return SanityBlockContent.defaultSerializers.types.block(props);
+	const createMarkup = (html) => {
+		return { __html: html };
 	};
 
 	return (
@@ -33,10 +25,16 @@ const visionAndMission = ({ data, contactInfo }) => {
 			</Head>
 			<NavBar active="vision-and-mission" info={contactInfo} />
 			<div className="container">
-				<h1 className="text-center pt-3">{data.header}</h1>
-				<SanityBlockContent
-					blocks={data.content}
-					serializers={{ types: { block: BlockRenderer } }}
+				<h1 className="text-center py-3">{article.title}</h1>
+				<RichText
+					content={article.content.raw}
+					renderers={{
+						blockquote: ({ children }) => (
+							<div className="blockquote text-black-50">
+								{children}
+							</div>
+						),
+					}}
 				/>
 			</div>
 
@@ -49,33 +47,44 @@ export default visionAndMission;
 
 // TODO: Refactor this fetch from the CMS
 export async function getStaticProps() {
-	const query = `*[_type == "article" && references(*[_type == 'section' && sectionName == 'Vision and Mission']._id)]{
-		title,
-		"header": section->sectionName,
-		_updatedAt,
-		content,
-	  }`;
-	let data;
+	const QUERY2 = gql`
+		query MissionAndVision {
+			articles(where: { section: Vision_And_Mission }) {
+				author {
+					name
+				}
+				content {
+					raw
+				}
+				title
+				publishedAt
+			}
+		}
+	`;
+	const { articles } = await graphcms.request(QUERY2);
 
-	await client.fetch(query).then((res) => {
-		data = res[0];
-	});
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+				taglineText
+			}
+		}
+	`;
 
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-	  }`;
-	let contactData;
-
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { contactInfos } = await graphcms.request(QUERY);
 
 	return {
 		props: {
-			data: data,
-			contactInfo: contactData[0],
+			data: articles,
+			contactInfo: contactInfos[0],
 		},
 	};
 }
