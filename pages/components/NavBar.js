@@ -10,7 +10,7 @@ const NavBar = ({ active, info }) => {
 				province: "Test Province",
 				postcode: "12345",
 			},
-			phone: "+44 000 000 0000",
+			phoneNumber: "+44 000 000 0000",
 			email: "test@email.com",
 		};
 	}
@@ -25,7 +25,7 @@ const NavBar = ({ active, info }) => {
 						href="tel:+447307504262"
 						className="text-black text-decoration-none"
 					>
-						{info.phone || "+44 000 000 0000"}
+						{info.phoneNumber || "+44 000 000 0000"}
 					</a>
 					<span>|</span>
 

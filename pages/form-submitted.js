@@ -2,7 +2,8 @@ import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import Head from "next/head";
 import Link from "next/link";
-import client from "../config/sanityClientConstructor";
+import { gql } from "graphql-request";
+import graphcms from "../config/graphCMSConfig";
 
 const FormSubmitted = ({ contactInfo }) => {
 	return (
@@ -36,20 +37,27 @@ const FormSubmitted = ({ contactInfo }) => {
 export default FormSubmitted;
 
 export async function getStaticProps() {
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-	  }`;
-	let contactData;
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+				taglineText
+			}
+		}
+	`;
 
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { contactInfos } = await graphcms.request(QUERY);
 
 	return {
 		props: {
-			contactInfo: contactData[0],
+			contactInfo: contactInfos[0],
 		},
 	};
 }

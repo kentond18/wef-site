@@ -44,10 +44,10 @@ const MainJumbotron = ({ data }) => {
 					</button>
 					<a
 						className="px-3 text-secondary fw-lighter py-3 py-md-0"
-						href={`tel:${data.phone}`}
+						href={`tel:${data.phoneNumber}`}
 					>
 						<i className="bi bi-telephone text-secondary pe-1"></i>
-						{data.phone}
+						{data.phoneNumber}
 					</a>
 				</div>
 			</div>

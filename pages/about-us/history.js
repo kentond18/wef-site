@@ -1,10 +1,14 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Head from "next/head";
-import client from "../../config/sanityClientConstructor";
-import SanityBlockContent from "@sanity/block-content-to-react";
+import graphcms from "../../config/graphCMSConfig";
+import { gql } from "graphql-request";
+import { RichText } from "@graphcms/rich-text-react-renderer";
+import renderers from "../../config/richTextRenders";
 
 const history = ({ data, contactInfo }) => {
+	let article = data[0];
+
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -17,12 +21,14 @@ const history = ({ data, contactInfo }) => {
 			</Head>
 			<NavBar active="history" info={contactInfo} />
 			<div className="container">
-				<h1 className="text-center pt-3">{data.header}</h1>
+				<h1 className="text-center pt-3">{article.title}</h1>
 				<p className="text-muted text-end">
-					Last updated:{" "}
-					{new Date(data._updatedAt).toLocaleDateString()}
+					Last updated: {new Date(article.updatedAt).toLocaleString()}
 				</p>
-				<SanityBlockContent blocks={data.content} />
+				<RichText
+					content={article.content.raw}
+					renderers={renderers()}
+				/>
 			</div>
 
 			<Footer active="about" info={contactInfo} />
@@ -33,39 +39,45 @@ const history = ({ data, contactInfo }) => {
 export default history;
 
 export async function getStaticProps() {
-	// const client = sanityClient({
-	// 	projectId: "0te03ffb",
-	// 	dataset: "production",
-	// 	apiVersion: "2021-09-28",
-	// 	useCdn: true,
-	// });
-	const query = `*[_type == "article" && references(*[_type == 'section' && sectionName == 'History']._id)]{
-		title,
-		"header": section->sectionName,
-		_updatedAt,
-		content,
-	  }`;
-	let data;
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+				taglineText
+			}
+		}
+	`;
 
-	await client.fetch(query).then((res) => {
-		data = res[0];
-	});
+	const { contactInfos } = await graphcms.request(QUERY);
 
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-	  }`;
-	let contactData;
+	const QUERY2 = gql`
+		query History {
+			articles(where: { section: History }) {
+				author {
+					name
+				}
+				title
+				content {
+					raw
+				}
+				updatedAt
+			}
+		}
+	`;
 
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { articles } = await graphcms.request(QUERY2);
 
 	return {
 		props: {
-			data: data,
-			contactInfo: contactData[0],
+			data: articles,
+			contactInfo: contactInfos[0],
 		},
 	};
 }
