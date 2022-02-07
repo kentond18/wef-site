@@ -2,6 +2,68 @@ import styles from "../../styles/components/NavBar.module.scss";
 import Link from "next/link";
 
 const NavBar = ({ active, info }) => {
+	const pages = {
+		home: {
+			name: "Home",
+			link: "/",
+		},
+		about: {
+			name: "About Us",
+			sublinks: {
+				history: {
+					name: "History",
+					link: "/about-us/history",
+				},
+				"mission-and-vision": {
+					name: "Mission and Vision",
+					link: "/about-us/mission-and-vision",
+				},
+				"our-team": {
+					name: "Our Team",
+					link: "/about-us/our-team",
+				},
+				partners: {
+					name: "Partners",
+					link: "/about-us/partners",
+				},
+				"contact-us": {
+					name: "Contact Us",
+					link: "/about-us/contact-us",
+				},
+			},
+		},
+		"our-work": {
+			name: "Our Work",
+			sublinks: {
+				screenings: {
+					name: "Screenings",
+					link: "/our-work/screenings",
+				},
+			},
+		},
+		gallery: {
+			name: "Gallery",
+			link: "/gallery",
+		},
+		"get-involved": {
+			name: "Get Involved",
+			sublinks: {
+				donate: {
+					name: "Donate",
+					link: "/donate",
+				},
+				"contact-us": {
+					name: "Contact Us",
+					link: "/get-involved/contact-us",
+				},
+			},
+		},
+		news: {
+			name: "News",
+			link: "/news",
+		},
+	};
+
 	if (!info) {
 		info = {
 			address: {
