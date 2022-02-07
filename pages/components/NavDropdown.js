@@ -19,16 +19,29 @@ const NavDropdown = ({ sublinks, active }) => {
 			>
 				{sublinks.sublinks.map((link, index) => {
 					console.log(link);
-					return (
-						<li key={index}>
-							<NavLink
-								title={link.name || "Untitled"}
-								route={link.link || "/"}
-								active={active}
-								classes="ps-2"
-							/>
-						</li>
-					);
+					if (link.name && link.link) {
+						return (
+							<li key={index}>
+								<NavLink
+									title={link.name || "Untitled"}
+									route={link.link || "/"}
+									active={active}
+									classes="ps-2"
+								/>
+							</li>
+						);
+					} else {
+						return (
+							<li key={index}>
+								<NavLink
+									title={"Untitled"}
+									route={"/"}
+									active={active}
+									classes="ps-2"
+								/>
+							</li>
+						);
+					}
 				})}
 			</ul>
 		</div>
