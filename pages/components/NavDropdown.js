@@ -18,11 +18,12 @@ const NavDropdown = ({ sublinks, active }) => {
 				aria-labelledby="navbarDropdown"
 			>
 				{sublinks.sublinks.map((link, index) => {
+					console.log(link);
 					return (
 						<li key={index}>
 							<NavLink
-								title={link.name}
-								route={link.link}
+								title={link.name || "Untitled"}
+								route={link.link || "/"}
 								active={active}
 								classes="ps-2"
 							/>
