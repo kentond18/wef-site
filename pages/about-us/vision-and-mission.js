@@ -9,10 +9,6 @@ import { RichText } from "@graphcms/rich-text-react-renderer";
 const visionAndMission = ({ data, contactInfo }) => {
 	const article = data[0];
 
-	const createMarkup = (html) => {
-		return { __html: html };
-	};
-
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
