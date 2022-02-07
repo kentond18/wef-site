@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import BioCard from "../components/BioCard";
-import graphcms from "../config/graphCMSConfig.js";
+import graphcms from "../../config/graphCMSConfig.js";
 import { gql } from "graphql-request";
 
 const partners = ({ data, contactInfo }) => {
@@ -46,33 +46,49 @@ export default partners;
 // TODO: Refactor this fetch from the CMS
 
 export async function getStaticProps() {
-	const query = `*[_type == "bio" && references(*[_type == 'section' && sectionName == 'Partners']._id)]{
-		name,
-		"imgURL": pic.asset->url,
-		position,
-		biography
-	  }`;
-	let data;
+	const QUERY = gql`
+		query ContactInfo {
+			contactInfos {
+				email
+				id
+				phoneNumber
+				fullAddress
+				address {
+					latitude
+					longitude
+				}
+				taglineText
+			}
+		}
+	`;
 
-	await client.fetch(query).then((res) => {
-		data = res;
-	});
+	const QUERY2 = gql`
+		query Partners {
+			profiles(where: { sectionOfSite: Partners }) {
+				smallProfileBlurb
+				sectionOfSite
+				profilePicture {
+					url
+					width
+					height
+				}
+				name
+				postiion
+				fullBiography {
+					html
+				}
+			}
+		}
+	`;
 
-	const infoQuery = `*[_type == "contact"]{
-		email,
-		phone,
-		address,
-	  }`;
-	let contactData;
+	const { contactInfos } = await graphcms.request(QUERY);
 
-	await client.fetch(infoQuery).then((res) => {
-		contactData = res;
-	});
+	const { profiles } = await graphcms.request(QUERY2);
 
 	return {
 		props: {
-			data: data,
-			contactInfo: contactData[0],
+			data: profiles,
+			contactInfo: contactInfos[0],
 		},
 	};
 }
