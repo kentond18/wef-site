@@ -5,7 +5,7 @@ import Script from "next/script";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { gql } from "graphql-request";
-import graphcms from "./graphCMSConfig";
+import graphcms from "../config/graphCMSConfig";
 
 const Donate = ({ contactInfo }) => {
 	return (

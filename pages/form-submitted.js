@@ -3,7 +3,7 @@ import NavBar from "./components/NavBar";
 import Head from "next/head";
 import Link from "next/link";
 import { gql } from "graphql-request";
-import graphcms from "./graphCMSConfig";
+import graphcms from "../config/graphCMSConfig";
 
 const FormSubmitted = ({ contactInfo }) => {
 	return (

@@ -36,7 +36,10 @@ const donateComplete = ({ contactInfo }) => {
 							placeholder="Email address"
 							required
 						/>
-						<button type="submit" className="btn btn-primary">
+						<button
+							type="submit"
+							className="btn btn-primary rounded"
+						>
 							Sign up!
 						</button>
 					</div>

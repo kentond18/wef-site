@@ -4,6 +4,7 @@ import Head from "next/head";
 import graphcms from "../../config/graphCMSConfig";
 import { gql } from "graphql-request";
 import { RichText } from "@graphcms/rich-text-react-renderer";
+import renderers from "../../config/richTextRenders";
 
 const history = ({ data, contactInfo }) => {
 	let article = data[0];
@@ -24,7 +25,10 @@ const history = ({ data, contactInfo }) => {
 				<p className="text-muted text-end">
 					Last updated: {new Date(article.updatedAt).toLocaleString()}
 				</p>
-				<RichText content={article.content.raw} />
+				<RichText
+					content={article.content.raw}
+					renderers={renderers()}
+				/>
 			</div>
 
 			<Footer active="about" info={contactInfo} />

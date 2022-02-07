@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-import graphcms from "../config/graphCMSConfig.js";
+import graphcms from "../../config/graphCMSConfig.js";
 import { gql } from "graphql-request";
 
 const ProjectPartner = ({ contactInfo }) => {

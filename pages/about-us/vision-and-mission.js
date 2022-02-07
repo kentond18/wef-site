@@ -5,6 +5,7 @@ import Head from "next/head";
 import graphcms from "../../config/graphCMSConfig.js";
 import { gql } from "graphql-request";
 import { RichText } from "@graphcms/rich-text-react-renderer";
+import renderers from "../../config/richTextRenders.js";
 
 const visionAndMission = ({ data, contactInfo }) => {
 	const article = data[0];
@@ -24,13 +25,7 @@ const visionAndMission = ({ data, contactInfo }) => {
 				<h1 className="text-center py-3">{article.title}</h1>
 				<RichText
 					content={article.content.raw}
-					renderers={{
-						blockquote: ({ children }) => (
-							<div className="blockquote text-black-50">
-								{children}
-							</div>
-						),
-					}}
+					renderers={renderers()}
 				/>
 			</div>
 
