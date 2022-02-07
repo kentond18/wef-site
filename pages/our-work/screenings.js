@@ -1,31 +1,33 @@
 import Head from "next/head";
-import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
-import graphcms from "../config/graphCMSConfig.js";
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
 import { gql } from "graphql-request";
+import graphcms from "../../config/graphCMSConfig";
 
-const Gallery = ({ contactInfo }) => {
+const Boilerplate = ({ contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
-				<title>Gallery- World Eye Foundation</title>
+				<title>Change Title - World Eye Foundation</title>
 				<meta
 					name="description"
-					content="Gallery - World Eye Foundation"
+					content="Change Description - World Eye Foundation"
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar info={contactInfo} active="/gallery" />
+			{/* Change active link prop */}
+			<NavBar info={contactInfo} active={"/our-work/screenings"} />
 
-			<div className="display-4 text-center py-3">Gallery</div>
+			<div className="display-2 text-center py-3">Screenings</div>
 
-			<Footer info={contactInfo} active="gallery" />
+			{/* Change active link prop */}
+			<Footer info={contactInfo} active={"/screenings"} />
 		</div>
 	);
 };
 
-export default Gallery;
+export default Boilerplate;
 
 export async function getStaticProps() {
 	const QUERY = gql`

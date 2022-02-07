@@ -19,7 +19,7 @@ const history = ({ data, contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 				<title>History - World Eye Foundation</title>
 			</Head>
-			<NavBar active="history" info={contactInfo} />
+			<NavBar active="/about-us/history" info={contactInfo} />
 			<div className="container">
 				<h1 className="text-center pt-3">{article.title}</h1>
 				<p className="text-muted text-end">

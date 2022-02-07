@@ -24,7 +24,7 @@ const Donate = ({ contactInfo }) => {
 			</Head>
 			<Script src="https://js.paystack.co/v1/inline.js"></Script>
 			<div className="vh-100 d-flex flex-column">
-				<NavBar active="donate" info={contactInfo} />
+				<NavBar active="/donate" info={contactInfo} />
 				<div className="align-self-center h-75 d-flex flex-column justify-content-center">
 					<DonateBlock />
 				</div>

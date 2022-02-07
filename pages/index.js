@@ -15,7 +15,7 @@ export default function Home({ contactInfo }) {
 				description="World Eye Foundation"
 			/>
 			<div className="vh-100 d-flex flex-column">
-				<NavBar active="home" info={contactInfo} />
+				<NavBar active="/" info={contactInfo} />
 
 				<MainJumbotron data={contactInfo} />
 

@@ -1,68 +1,70 @@
 import styles from "../../styles/components/NavBar.module.scss";
 import Link from "next/link";
+import NavDropdown from "./NavDropdown";
+import NavLink from "./NavLink";
 
 const NavBar = ({ active, info }) => {
-	const pages = {
-		home: {
+	const pages = [
+		{
 			name: "Home",
 			link: "/",
 		},
-		about: {
+		{
 			name: "About Us",
-			sublinks: {
-				history: {
+			sublinks: [
+				{
 					name: "History",
 					link: "/about-us/history",
 				},
-				"mission-and-vision": {
-					name: "Mission and Vision",
-					link: "/about-us/mission-and-vision",
+				{
+					name: "Vision and Mission",
+					link: "/about-us/vision-and-mission",
 				},
-				"our-team": {
+				{
 					name: "Our Team",
 					link: "/about-us/our-team",
 				},
-				partners: {
+				{
 					name: "Partners",
 					link: "/about-us/partners",
 				},
-				"contact-us": {
+				{
 					name: "Contact Us",
 					link: "/about-us/contact-us",
 				},
-			},
+			],
 		},
-		"our-work": {
+		{
 			name: "Our Work",
-			sublinks: {
-				screenings: {
+			sublinks: [
+				{
 					name: "Screenings",
 					link: "/our-work/screenings",
 				},
-			},
+			],
 		},
-		gallery: {
+		{
 			name: "Gallery",
 			link: "/gallery",
 		},
-		"get-involved": {
+		{
 			name: "Get Involved",
-			sublinks: {
-				donate: {
+			sublinks: [
+				{
 					name: "Donate",
 					link: "/donate",
 				},
-				"contact-us": {
+				{
 					name: "Contact Us",
-					link: "/get-involved/contact-us",
+					link: "/about-us/contact-us",
 				},
-			},
+			],
 		},
-		news: {
+		{
 			name: "News",
 			link: "/news",
 		},
-	};
+	];
 
 	if (!info) {
 		info = {
@@ -151,276 +153,28 @@ const NavBar = ({ active, info }) => {
 						className="collapse navbar-collapse justify-content-end text-secondary"
 						id="navbarNavAltMarkup"
 					>
-						<Link aria-current="page" href="/">
-							<a
-								className={`nav-link ${
-									active == "home" ? "active" : null
-								}`}
-							>
-								Home
-							</a>
-						</Link>
-						<div className="nav-item dropdown">
-							<a
-								className="nav-link dropdown-toggle"
-								href="#"
-								id="navbarDropdown"
-								role="button"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								About Us
-							</a>
-							<ul
-								className="dropdown-menu border-0 bg-light text-decoration-none"
-								aria-labelledby="navbarDropdown"
-							>
-								<li>
-									<Link href="/about-us/history">
-										<a
-											className={`nav-link ps-2 ${
-												active == "history"
-													? "active"
-													: null
-											}`}
-										>
-											History
-										</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="/about-us/vision-and-mission">
-										<a
-											className={`nav-link ps-2 ${
-												active == "vision-and-mission"
-													? "active"
-													: null
-											}`}
-										>
-											Mission and Vision
-										</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="/about-us/our-team">
-										<a
-											className={`nav-link ps-2 ${
-												active == "our-team"
-													? "active"
-													: null
-											}`}
-										>
-											Our Team
-										</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="/about-us/partners">
-										<a
-											className={`nav-link ps-2 ${
-												active == "partners"
-													? "active"
-													: null
-											}`}
-										>
-											Partners
-										</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="/about-us/contact-us">
-										<a
-											className={`nav-link ps-2 ${
-												active == "contact"
-													? "active"
-													: null
-											}`}
-										>
-											Contact Us
-										</a>
-									</Link>
-								</li>
-							</ul>
-						</div>
-						<div className="nav-item dropdown">
-							<a
-								className="nav-link dropdown-toggle"
-								href="#"
-								id="navbarDropdown"
-								role="button"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								Our Work
-							</a>
-							<ul
-								className="dropdown-menu border-0 bg-light text-decoration-none"
-								aria-labelledby="navbarDropdown"
-							>
-								<li>
-									<Link href="/our-work/community-rural-outreaches">
-										<a
-											className={`nav-link ps-2 ${
-												active ==
-												"community-rural-outreaches"
-													? "active"
-													: null
-											}`}
-										>
-											Community and Rural Outreaches
-										</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="/our-work/school-screening-prog">
-										<a
-											className={`nav-link ps-2 ${
-												active ==
-												"school-screening-prog"
-													? "active"
-													: null
-											}`}
-										>
-											School Screening Programmes
-										</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="/our-work/research-develop">
-										<a
-											className={`nav-link ps-2 ${
-												active == "research-develop"
-													? "active"
-													: null
-											}`}
-										>
-											Research and Development
-										</a>
-									</Link>
-								</li>
-								<li>
-									<Link href="/our-work/conf-webinar-tips">
-										<a
-											className={`nav-link ps-2 ${
-												active == "conf-webinar-tips"
-													? "active"
-													: null
-											}`}
-										>
-											Conferences, Webinars, and Eye Care
-											Tips
-										</a>
-									</Link>
-								</li>
-							</ul>
-						</div>
-						<Link href="/gallery">
-							<a
-								className={`nav-link ${
-									active == "gallery" ? "active" : null
-								}`}
-							>
-								Gallery
-							</a>
-						</Link>
+						{/* Navbar links */}
 
-						<div className="nav-item dropdown">
-							<a
-								className="nav-link dropdown-toggle"
-								href="#"
-								id="navbarDropdown"
-								role="button"
-								data-bs-toggle="dropdown"
-								aria-expanded="false"
-							>
-								Get Involved
-							</a>
-							<ul
-								className="dropdown-menu border-0 text-decoration-none"
-								aria-labelledby="navbarDropdown"
-							>
-								<div className="bg-light">
-									<li>
-										<Link href="/donate">
-											<a
-												className={`nav-link ps-2 ${
-													active == "donate"
-														? "active"
-														: null
-												}`}
-											>
-												Donate
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href="/get-involved/corporate-partner">
-											<a
-												className={`nav-link ps-2 ${
-													active ==
-													"corporate-partner"
-														? "active"
-														: null
-												}`}
-											>
-												Become a Corporate Partner
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href="/get-involved/project-partner">
-											<a
-												className={`nav-link ps-2 ${
-													active == "project-partner"
-														? "active"
-														: null
-												}`}
-											>
-												Partner for Programmes or
-												Projects
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href="/get-involved/volunteering">
-											<a
-												className={`nav-link ps-2 ${
-													active == "volunteering"
-														? "active"
-														: null
-												}`}
-											>
-												Volunteering
-											</a>
-										</Link>
-									</li>
-									<li>
-										<Link href="/get-involved/careers">
-											<a
-												className={`nav-link ps-2 ${
-													active == "careers"
-														? "active"
-														: null
-												}`}
-											>
-												Attachment, Internship, and
-												Career Opportunities
-											</a>
-										</Link>
-									</li>
-								</div>
-							</ul>
-						</div>
-
-						<Link href="/news">
-							<a
-								className={`nav-link ${
-									active == "news" ? "active" : null
-								}`}
-							>
-								News
-							</a>
-						</Link>
+						{pages.map((e, i) => {
+							if (e.sublinks) {
+								return (
+									<NavDropdown
+										key={i}
+										sublinks={e}
+										active={active}
+									/>
+								);
+							} else {
+								return (
+									<NavLink
+										key={i}
+										title={e.name}
+										route={e.link}
+										active={active}
+									/>
+								);
+							}
+						})}
 
 						<Link href="/donate" passHref>
 							<button className="btn btn-primary col-3 col-sm-2 col-md-2 p-2 ms-3">

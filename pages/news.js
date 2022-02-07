@@ -16,9 +16,9 @@ const News = ({ contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar info={contactInfo} active="news" />
+			<NavBar info={contactInfo} active="/news" />
 
-			<div className=""></div>
+			<div className="display-4 text-center py-3">News</div>
 
 			<Footer info={contactInfo} active="news" />
 		</div>

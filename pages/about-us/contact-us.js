@@ -62,7 +62,7 @@ const ContactUs = ({ contactInfo }) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar active="contact-us" info={contactInfo} />
+			<NavBar active="/about-us/contact-us" info={contactInfo} />
 			<h1 className="text-center pt-3">Contact Us</h1>
 			<form
 				className="container col-10 pb-3 col-md-8 col-lg-6 col-xl-4"

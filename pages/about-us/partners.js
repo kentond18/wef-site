@@ -30,7 +30,7 @@ const partners = ({ data, contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar active="partners" info={contactInfo} />
+			<NavBar active="/about-us/partners" info={contactInfo} />
 			<h1 className="text-center pt-3">Partners</h1>
 			<div className="d-flex justify-content-evenly flex-wrap">
 				{pgData}

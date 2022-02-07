@@ -20,7 +20,7 @@ const visionAndMission = ({ data, contactInfo }) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar active="vision-and-mission" info={contactInfo} />
+			<NavBar active="/about-us/vision-and-mission" info={contactInfo} />
 			<div className="container">
 				<h1 className="text-center py-3">{article.title}</h1>
 				<RichText

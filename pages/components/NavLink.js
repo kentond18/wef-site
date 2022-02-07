@@ -1,16 +1,16 @@
 import Link from "next/link";
 
-const NavLink = ({ title, route, active }) => {
-	if (active == title.toLowerCase()) {
+const NavLink = ({ title, route, active, classes }) => {
+	if (active === route) {
 		return (
 			<Link aria-current="page" href={route}>
-				<a className="nav-link active">{title}</a>
+				<a className={`nav-link active ${classes}`}>{title}</a>
 			</Link>
 		);
 	} else {
 		return (
 			<Link href={route}>
-				<a className="nav-link">{title}</a>
+				<a className={`nav-link ${classes}`}>{title}</a>
 			</Link>
 		);
 	}
