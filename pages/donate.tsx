@@ -6,8 +6,14 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { gql } from "graphql-request";
 import graphcms from "../config/graphCMSConfig";
+import { GetStaticProps, NextPage } from "next";
+import { contactInfo } from "../types";
 
-const Donate = ({ contactInfo }) => {
+type Props = {
+	contactInfo: contactInfo;
+};
+
+const Donate: NextPage<Props> = ({ contactInfo }) => {
 	return (
 		<div>
 			<Head>
@@ -24,11 +30,11 @@ const Donate = ({ contactInfo }) => {
 			</Head>
 			<Script src="https://js.paystack.co/v1/inline.js"></Script>
 			<div className="vh-100 d-flex flex-column">
-				<NavBar active="/donate" info={contactInfo} />
+				<NavBar active="/donate" contactInfo={contactInfo} />
 				<div className="align-self-center h-75 d-flex flex-column justify-content-center">
 					<DonateBlock />
 				</div>
-				<Footer active="donate" info={contactInfo} />
+				<Footer active="donate" contactInfo={contactInfo} />
 			</div>
 		</div>
 	);
@@ -36,7 +42,7 @@ const Donate = ({ contactInfo }) => {
 
 export default Donate;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -60,4 +66,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};

@@ -3,8 +3,14 @@ import NavBar from "./components/NavBar";
 import Head from "next/head";
 import graphcms from "../config/graphCMSConfig.js";
 import { gql } from "graphql-request";
+import { GetStaticProps, NextPage } from "next";
+import { contactInfo } from "../types";
 
-const donateComplete = ({ contactInfo }) => {
+type Props = {
+	contactInfo: contactInfo;
+};
+
+const donateComplete: NextPage<Props> = ({ contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -19,7 +25,7 @@ const donateComplete = ({ contactInfo }) => {
 					content="Thank you for your support! - World Eye Foundation"
 				/>
 			</Head>
-			<NavBar info={contactInfo} />
+			<NavBar contactInfo={contactInfo} active={""} />
 			<div className="container w-50 py-3 h-50 d-flex flex-column justify-content-center">
 				<h1 className="text-center">Thank you for your donation!</h1>
 				<p className="text-center pt-3">
@@ -45,14 +51,14 @@ const donateComplete = ({ contactInfo }) => {
 					</div>
 				</form>
 			</div>
-			<Footer info={contactInfo} />
+			<Footer contactInfo={contactInfo} active={""} />
 		</div>
 	);
 };
 
 export default donateComplete;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -76,4 +82,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
