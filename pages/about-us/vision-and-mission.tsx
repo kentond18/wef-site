@@ -32,7 +32,7 @@ const visionAndMission: NextPage<Props> = ({ article, contactInfo }) => {
 			<div className="container">
 				<h1 className="text-center py-3">{article.title}</h1>
 				<RichText
-					content={article.content.content.raw.children}
+					content={article.content.raw.children}
 					renderers={renderers()}
 				/>
 			</div>

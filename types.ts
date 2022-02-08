@@ -1,10 +1,8 @@
 import { ElementNode } from "@graphcms/rich-text-types";
 
 export type Content = {
-	content: {
-		raw: {
-			children: ElementNode[];
-		};
+	raw: {
+		children: ElementNode[];
 	};
 };
 
