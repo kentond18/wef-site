@@ -5,10 +5,15 @@ import graphcms from "../../config/graphCMSConfig";
 import { gql } from "graphql-request";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import renderers from "../../config/richTextRenders";
+import { GetStaticProps, NextPage } from "next";
+import { Article, contactInfo } from "../../types";
 
-const history = ({ data, contactInfo }) => {
-	let article = data[0];
+type Props = {
+	contactInfo: contactInfo;
+	article: Article;
+};
 
+const history: NextPage<Props> = ({ article, contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -19,11 +24,12 @@ const history = ({ data, contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 				<title>History - World Eye Foundation</title>
 			</Head>
-			<NavBar active="/about-us/history" info={contactInfo} />
+			<NavBar active="/about-us/history" contactInfo={contactInfo} />
 			<div className="container">
 				<h1 className="text-center pt-3">{article.title}</h1>
 				<p className="text-muted text-end">
-					Last updated: {new Date(article.updatedAt).toLocaleString()}
+					Last updated:{" "}
+					{new Date(article.publishedAt).toLocaleString()}
 				</p>
 				<RichText
 					content={article.content.raw}
@@ -31,14 +37,14 @@ const history = ({ data, contactInfo }) => {
 				/>
 			</div>
 
-			<Footer active="about" info={contactInfo} />
+			<Footer active="/about-us/history" contactInfo={contactInfo} />
 		</div>
 	);
 };
 
 export default history;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -76,8 +82,8 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			data: articles,
+			article: articles[0],
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
