@@ -4,7 +4,7 @@ import Head from "next/head";
 import BioCard from "../components/BioCard";
 import graphcms from "../../config/graphCMSConfig.js";
 import { gql } from "graphql-request";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { contactInfo, Profile } from "../../types";
 import { ReactElement } from "react";
 
@@ -69,9 +69,7 @@ const partners: NextPage<Props> = ({ profiles, contactInfo }) => {
 
 export default partners;
 
-// TODO: Refactor this fetch from the CMS
-
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -117,4 +115,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
