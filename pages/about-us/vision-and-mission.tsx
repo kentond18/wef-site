@@ -6,10 +6,15 @@ import graphcms from "../../config/graphCMSConfig.js";
 import { gql } from "graphql-request";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import renderers from "../../config/richTextRenders.js";
+import { GetStaticProps, NextPage } from "next";
+import { Article, contactInfo } from "../../types";
 
-const visionAndMission = ({ data, contactInfo }) => {
-	const article = data[0];
+type Props = {
+	contactInfo: contactInfo;
+	article: Article;
+};
 
+const visionAndMission: NextPage<Props> = ({ article, contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -20,24 +25,29 @@ const visionAndMission = ({ data, contactInfo }) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar active="/about-us/vision-and-mission" info={contactInfo} />
+			<NavBar
+				active="/about-us/vision-and-mission"
+				contactInfo={contactInfo}
+			/>
 			<div className="container">
 				<h1 className="text-center py-3">{article.title}</h1>
 				<RichText
-					content={article.content.raw}
+					content={article.content.content.raw.children}
 					renderers={renderers()}
 				/>
 			</div>
 
-			<Footer info={contactInfo} />
+			<Footer
+				contactInfo={contactInfo}
+				active="/about-us/vision-and-mission"
+			/>
 		</div>
 	);
 };
 
 export default visionAndMission;
 
-// TODO: Refactor this fetch from the CMS
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY2 = gql`
 		query MissionAndVision {
 			articles(where: { section: Vision_And_Mission }) {
@@ -74,8 +84,8 @@ export async function getStaticProps() {
 
 	return {
 		props: {
-			data: articles,
+			article: articles[0],
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
