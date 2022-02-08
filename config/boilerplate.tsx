@@ -3,8 +3,15 @@ import Footer from "../pages/components/Footer";
 import NavBar from "../pages/components/NavBar";
 import { gql } from "graphql-request";
 import graphcms from "./graphCMSConfig";
+import { GetStaticProps, NextPage } from "next";
+import { type } from "os";
+import { contactInfo } from "../types";
 
-const Boilerplate = ({ contactInfo }) => {
+type Props = {
+	contactInfo: contactInfo;
+};
+
+const Boilerplate: NextPage<Props> = ({ contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -17,19 +24,19 @@ const Boilerplate = ({ contactInfo }) => {
 			</Head>
 
 			{/* Change active link prop */}
-			<NavBar info={contactInfo} active={""} />
+			<NavBar contactInfo={contactInfo} active={""} />
 
 			<div className=""></div>
 
 			{/* Change active link prop */}
-			<Footer info={contactInfo} active={""} />
+			<Footer contactInfo={contactInfo} active={""} />
 		</div>
 	);
 };
 
 export default Boilerplate;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -53,4 +60,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
