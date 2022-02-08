@@ -4,8 +4,14 @@ import Head from "next/head";
 import Link from "next/link";
 import { gql } from "graphql-request";
 import graphcms from "../config/graphCMSConfig";
+import { GetStaticProps, NextPage } from "next";
+import { contactInfo } from "../types";
 
-const FormSubmitted = ({ contactInfo }) => {
+type Props = {
+	contactInfo: contactInfo;
+};
+
+const FormSubmitted: NextPage<Props> = ({ contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -16,7 +22,7 @@ const FormSubmitted = ({ contactInfo }) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar info={contactInfo} />
+			<NavBar contactInfo={contactInfo} active="/form-submitted" />
 			<div className="container text-center py-5">
 				<h1>We will be in touch!</h1>
 				<h3>
@@ -29,14 +35,14 @@ const FormSubmitted = ({ contactInfo }) => {
 					</a>
 				</Link>
 			</div>
-			<Footer info={contactInfo} />
+			<Footer contactInfo={contactInfo} active="/form-submitted" />
 		</div>
 	);
 };
 
 export default FormSubmitted;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -60,4 +66,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
