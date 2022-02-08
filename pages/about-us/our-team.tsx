@@ -4,20 +4,38 @@ import NavBar from "../components/NavBar";
 import { gql } from "graphql-request";
 import graphcms from "../../config/graphCMSConfig";
 import BioCard from "../components/BioCard";
+import { GetStaticProps, NextPage } from "next";
+import { contactInfo, Profile } from "../../types";
 
-const ourTeam = ({ profiles, contactInfo }) => {
+type Props = {
+	profiles: Profile[];
+	contactInfo: contactInfo;
+};
+
+const ourTeam: NextPage<Props> = ({ profiles, contactInfo }) => {
 	let pgData = "";
+
 	if (!profiles) {
-		pgData = (
-			<div className="display-3 text-center pt-5">
-				Unfortunately, this page is currently getting updated. Please
-				check back soon.
+		return (
+			<div className="vh-100 d-flex flex-column">
+				<Head>
+					<title>Our Team - World Eye Foundation</title>
+					<meta
+						name="description"
+						content="Our Team - World Eye Foundation"
+					/>
+					<link rel="icon" href="/wef_icon.png" />
+				</Head>
+				<NavBar active="/about-us/our-team" contactInfo={contactInfo} />
+				<h1 className="text-center pt-3">Our Team</h1>
+				<div className="display-3 text-center pt-5">
+					Unfortunately, this page is currently getting updated.
+					Please check back soon.
+				</div>
+
+				<Footer contactInfo={contactInfo} active="/about-us/our-team" />
 			</div>
 		);
-	} else {
-		pgData = profiles.map((e, i) => {
-			return <BioCard data={e} key={i} />;
-		});
 	}
 
 	return (
@@ -31,20 +49,22 @@ const ourTeam = ({ profiles, contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar active="/about-us/our-team" info={contactInfo} />
+			<NavBar active="/about-us/our-team" contactInfo={contactInfo} />
 			<h1 className="text-center pt-3">Our Team</h1>
 			<div className="d-flex justify-content-evenly flex-wrap">
-				{pgData}
+				{profiles.map((e, i) => {
+					return <BioCard Profile={e} key={i} />;
+				})}
 			</div>
 
-			<Footer info={contactInfo} />
+			<Footer contactInfo={contactInfo} active="/about-us/our-team" />
 		</div>
 	);
 };
 
 export default ourTeam;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -90,4 +110,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
