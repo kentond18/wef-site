@@ -1,6 +1,7 @@
 import axios from "axios";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req, res) {
+const contact = async (req: NextApiRequest, res: NextApiResponse) => {
 	await axios
 		.post(
 			"https://api.airtable.com/v0/appAAeMZXtzd4hoMR/Contact%20Form",
@@ -25,4 +26,6 @@ export default async function handler(req, res) {
 		.then((response) => {
 			res.status(response.status).send(response.data);
 		});
-}
+};
+
+export default contact;
