@@ -6,9 +6,10 @@ import Header from "./components/Header";
 import { gql } from "graphql-request";
 import graphcms from "../config/graphCMSConfig";
 import { GetStaticProps } from "next";
+import { contactInfo } from "../types";
 
 type Props = {
-	contactInfo;
+	contactInfo: contactInfo;
 };
 
 export default function Home({ contactInfo }: Props) {
