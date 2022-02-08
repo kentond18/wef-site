@@ -35,7 +35,7 @@ const Unsubscribe: NextPage<Props> = ({ contactInfo }) => {
 
 export default Unsubscribe;
 
-export const getStaticProps: GetStaticProps = async () => {{
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -59,4 +59,4 @@ export const getStaticProps: GetStaticProps = async () => {{
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
