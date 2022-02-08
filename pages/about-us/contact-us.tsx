@@ -6,8 +6,14 @@ import { gql } from "graphql-request";
 import { useState } from "react";
 import router from "next/router";
 import axios from "axios";
+import { GetStaticProps, NextPage } from "next";
+import { contactInfo } from "../../types";
 
-const ContactUs = ({ contactInfo }) => {
+type Props = {
+	contactInfo: contactInfo;
+};
+
+const ContactUs: NextPage<Props> = ({ contactInfo }) => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
@@ -62,7 +68,7 @@ const ContactUs = ({ contactInfo }) => {
 				/>
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
-			<NavBar active="/about-us/contact-us" info={contactInfo} />
+			<NavBar active="/about-us/contact-us" contactInfo={contactInfo} />
 			<h1 className="text-center pt-3">Contact Us</h1>
 			<form
 				className="container col-10 pb-3 col-md-8 col-lg-6 col-xl-4"
@@ -105,9 +111,8 @@ const ContactUs = ({ contactInfo }) => {
 						Message
 					</label>
 					<textarea
-						type="textarea"
 						className="form-control"
-						rows="3"
+						rows={3}
 						id="message"
 						name="Message"
 						value={message}
@@ -133,14 +138,14 @@ const ContactUs = ({ contactInfo }) => {
 				</h3>
 			</form>
 
-			<Footer active="contact" info={contactInfo} />
+			<Footer active="/about-us/contact-us" contactInfo={contactInfo} />
 		</div>
 	);
 };
 
 export default ContactUs;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -164,4 +169,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
