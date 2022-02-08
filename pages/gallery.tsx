@@ -3,8 +3,14 @@ import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import graphcms from "../config/graphCMSConfig.js";
 import { gql } from "graphql-request";
+import { GetStaticProps, NextPage } from "next";
+import { contactInfo } from "../types";
 
-const Gallery = ({ contactInfo }) => {
+type Props = {
+	contactInfo: contactInfo;
+};
+
+const Gallery: NextPage<Props> = ({ contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -16,18 +22,18 @@ const Gallery = ({ contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar info={contactInfo} active="/gallery" />
+			<NavBar contactInfo={contactInfo} active="/gallery" />
 
 			<div className="display-4 text-center py-3">Gallery</div>
 
-			<Footer info={contactInfo} active="gallery" />
+			<Footer contactInfo={contactInfo} active="gallery" />
 		</div>
 	);
 };
 
 export default Gallery;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -51,4 +57,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
