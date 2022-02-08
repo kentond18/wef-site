@@ -1,6 +1,6 @@
 import { GraphQLClient } from "graphql-request";
 
-const graphcms = new GraphQLClient(
+const graphcms: GraphQLClient = new GraphQLClient(
 	"https://api-us-east-1.graphcms.com/v2/ckyymux0k032b01w9e60acjvd/master",
 	{
 		headers: {
