@@ -1,3 +1,24 @@
+import { ElementNode } from "@graphcms/rich-text-types";
+
+export type Content = {
+	content: {
+		raw: {
+			children: ElementNode[];
+		};
+	};
+};
+
+export interface Article {
+	author: Author;
+	title: string;
+	publishedAt: null;
+	content: Content;
+}
+
+export interface Author {
+	name: string;
+}
+
 export interface contactInfo {
 	email: string;
 	id: string;
