@@ -1,5 +1,5 @@
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+import NavBar from "../../components/NavBar";
+import Footer from "../../components/Footer";
 import Head from "next/head";
 import graphcms from "../../config/graphCMSConfig";
 import { gql } from "graphql-request";

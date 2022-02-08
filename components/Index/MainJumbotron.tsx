@@ -1,4 +1,4 @@
-import styles from "../../../styles/components/jumbotron.module.scss";
+import styles from "/styles/components/jumbotron.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 

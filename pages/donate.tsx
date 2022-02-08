@@ -1,9 +1,9 @@
 import styles from "../styles/Donate.module.scss";
-import DonateBlock from "./components/DonateBlock";
+import DonateBlock from "../components/DonateBlock";
 import Head from "next/head";
 import Script from "next/script";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 import { gql } from "graphql-request";
 import graphcms from "../config/graphCMSConfig";
 import { GetStaticProps, NextPage } from "next";

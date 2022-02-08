@@ -1,11 +1,11 @@
 import React from "react";
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 import Head from "next/head";
-import graphcms from "../../config/graphCMSConfig.js";
+import graphcms from "../../config/graphCMSConfig";
 import { gql } from "graphql-request";
 import { RichText } from "@graphcms/rich-text-react-renderer";
-import renderers from "../../config/richTextRenders.js";
+import renderers from "../../config/richTextRenders";
 import { GetStaticProps, NextPage } from "next";
 import { Article, contactInfo } from "../../types";
 

@@ -1,4 +1,4 @@
-import { Page } from "../../types";
+import { Page } from "../types";
 import NavLink from "./NavLink";
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
 	links: Page;
 };
 
-const NavDropdown = ({ links, active }) => {
+const NavDropdown: React.FC<Props> = ({ links, active }) => {
 	return (
 		<div className="nav-item dropdown">
 			<a
@@ -27,8 +27,8 @@ const NavDropdown = ({ links, active }) => {
 					return (
 						<li key={index}>
 							<NavLink
-								title={sublink.name}
-								route={sublink.link}
+								title={sublink.name || ""}
+								route={sublink.link || ""}
 								active={active}
 								classes="ps-2"
 							/>

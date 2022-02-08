@@ -1,11 +1,12 @@
-import styles from "../../styles/components/NavBar.module.scss";
+import styles from "/styles/components/NavBar.module.scss";
 import Link from "next/link";
 import NavDropdown from "./NavDropdown";
 import NavLink from "./NavLink";
+import { contactInfo } from "../types";
 
 type Props = {
 	active: string;
-	contactInfo;
+	contactInfo: contactInfo;
 };
 
 const NavBar: React.FunctionComponent<Props> = ({ active, contactInfo }) => {

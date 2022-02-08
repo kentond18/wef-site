@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Footer from "./components/Footer";
-import NavBar from "./components/NavBar";
-import graphcms from "../config/graphCMSConfig.js";
+import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
+import graphcms from "../config/graphCMSConfig";
 import { gql } from "graphql-request";
 import { GetStaticProps, NextPage } from "next";
 import { contactInfo } from "../types";

@@ -2,10 +2,11 @@ import styles from "../../styles/components/Footer.module.scss";
 import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
+import { contactInfo } from "../types";
 
 type Props = {
 	active: string;
-	contactInfo;
+	contactInfo?: contactInfo;
 };
 
 const Footer: React.FunctionComponent<Props> = ({ active, contactInfo }) => {

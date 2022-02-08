@@ -1,8 +1,8 @@
 import styles from "../styles/Home.module.scss";
-import MainJumbotron from "./components/Index/MainJumbotron";
-import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
+import MainJumbotron from "../components/Index/MainJumbotron";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import { gql } from "graphql-request";
 import graphcms from "../config/graphCMSConfig";
 import { GetStaticProps } from "next";

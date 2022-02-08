@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
+import Footer from "../../components/Footer";
+import NavBar from "../../components/NavBar";
 import { gql } from "graphql-request";
 import graphcms from "../../config/graphCMSConfig";
-import BioCard from "../components/BioCard";
+import BioCard from "../../components/BioCard";
 import { GetStaticProps, NextPage } from "next";
 import { contactInfo, Profile } from "../../types";
 
