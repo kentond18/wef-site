@@ -1,7 +1,9 @@
+import { NextApiRequest, NextApiResponse } from "next";
+
 const mailchimp = require("@mailchimp/mailchimp_marketing");
 const md5 = require("md5");
 
-export default async function handler(req, res) {
+const newsletter = async (req: NextApiRequest, res: NextApiResponse) => {
 	const listID = process.env.MAILCHIMP_AUDIENCE_ID;
 	mailchimp.setConfig({
 		apiKey: process.env.MAILCHIMP_API_KEY,
@@ -98,4 +100,6 @@ export default async function handler(req, res) {
 			res.status(504).send(JSON.stringify({ info: "Server error" }));
 		}
 	}
-}
+};
+
+export default newsletter;
