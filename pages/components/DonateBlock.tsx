@@ -4,31 +4,29 @@ import { useState } from "react";
 import { PaystackButton } from "react-paystack";
 import styles from "../../styles/components/DonateBlock.module.scss";
 
-const DonateBlock = (props) => {
+const DonateBlock: React.FunctionComponent = () => {
 	const router = useRouter();
+	type Currency = "NGN" | "GHS" | "USD" | "ZAR";
+
+	type returnCurrency = (currency: string) => Currency;
+	let returnCurrency: returnCurrency = (currency) => {
+		switch (currency) {
+			case "NGN":
+				return "NGN";
+			case "GHS":
+				return "GHS";
+			case "USD":
+				return "USD";
+			case "ZAR":
+				return "ZAR";
+			default:
+				return "NGN";
+		}
+	};
+
 	const [email, setEmail] = useState("");
 	const [amount, setAmount] = useState(0);
-	const [currency, setCurrency] = useState("USD");
-
-	const onSuccess = (ref) => {
-		router.push("/donate-complete");
-		console.log("Payment complete! Reference: " + ref.reference);
-	};
-
-	const onClose = () => {
-		console.log("Closed payment window");
-	};
-
-	const config = {
-		amount: amount * 100,
-		email,
-		currency,
-		reference: new Date().getTime().toString(),
-		publicKey: "pk_test_50988ea6de4aa7a346924072a1d5974c42a88bbd",
-		text: "Donate",
-		onSuccess,
-		onClose,
-	};
+	const [currency, setCurrency] = useState("NGN");
 
 	return (
 		<div className="card border-0" style={{ width: "24rem" }}>
@@ -81,7 +79,9 @@ const DonateBlock = (props) => {
 							placeholder="Enter your amount here..."
 							aria-label="Amount"
 							aria-describedby="donate-amount"
-							onChange={(e) => setAmount(e.target.value)}
+							onChange={(e) =>
+								setAmount(e.target.value as unknown as number)
+							}
 						/>
 					</div>
 				</div>
@@ -100,7 +100,21 @@ const DonateBlock = (props) => {
 					</select>
 				</div>
 				<PaystackButton
-					{...config}
+					amount={amount * 100}
+					email={email}
+					currency={returnCurrency(currency)}
+					reference={new Date().getTime().toString()}
+					publicKey="pk_test_50988ea6de4aa7a346924072a1d5974c42a88bbd"
+					text="Donate"
+					onSuccess={(ref: { reference: string }) => {
+						router.push("/donate-complete");
+						console.log(
+							"Payment complete! Reference: " + ref.reference
+						);
+					}}
+					onClose={() => {
+						console.log("Closed payment window");
+					}}
 					className="btn btn-primary text-white w-50"
 				/>
 			</form>

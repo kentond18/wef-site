@@ -3,7 +3,12 @@ import Link from "next/link";
 import { useState } from "react";
 import axios from "axios";
 
-const Footer = ({ active, info }) => {
+type Props = {
+	active: string;
+	contactInfo;
+};
+
+const Footer: React.FunctionComponent<Props> = ({ active, contactInfo }) => {
 	const [email, setEmail] = useState("");
 	const [disabled, setDisabled] = useState(false);
 
@@ -45,7 +50,7 @@ const Footer = ({ active, info }) => {
 			console.log(error);
 			// Clear input field
 			setEmail("");
-			// Display error message and inform to try again
+			// Display error message and contactInform to try again
 			document
 				.getElementById("serverErrorText")
 				.classList.remove("d-none");
@@ -59,26 +64,6 @@ const Footer = ({ active, info }) => {
 		}
 	};
 
-	if (!info) {
-		info = {
-			address: {
-				street: "123 Test Street",
-				city: "Test City",
-				province: "Test Province",
-				postcode: "12345",
-			},
-			phonNumber: "+44 000 000 0000",
-			email: "test@email.com",
-		};
-	}
-
-	const address = (
-		<>
-			{info.address.street} <br />
-			{info.address.city}, {info.address.province} <br />
-			{info.address.postcode}
-		</>
-	);
 	return (
 		<footer className="bg-dark mt-auto">
 			<div className="p-4 d-flex flex-column flex-md-row flex-wrap align-items-center align-items-md-start justify-content-evenly text-light">
@@ -86,13 +71,13 @@ const Footer = ({ active, info }) => {
 					World Eye <br /> Foundation
 				</p>
 				<div className="d-flex flex-column justify-content-evenly">
-					<p className="fs-5">Contact Info</p>
+					<p className="fs-5">Contact Us</p>
 					<ul className="list-unstyled fw-light">
 						<li className="py-2" style={{ width: "12rem" }}>
-							{info.fullAddress || address}
+							{contactInfo.fullAddress}
 						</li>
-						<li className="py-2">{info.phoneNumber}</li>
-						<li className="py-2">{info.email}</li>
+						<li className="py-2">{contactInfo.phoneNumber}</li>
+						<li className="py-2">{contactInfo.email}</li>
 					</ul>
 				</div>
 				<div className="d-flex flex-column justify-content-evenly">

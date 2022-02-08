@@ -1,6 +1,18 @@
 import Link from "next/link";
 
-const NavLink = ({ title, route, active, classes }) => {
+type Props = {
+	active: string;
+	title: string;
+	route: string;
+	classes?: string;
+};
+
+const NavLink: React.FunctionComponent<Props> = ({
+	title,
+	route,
+	active,
+	classes,
+}) => {
 	if (active === route) {
 		return (
 			<Link aria-current="page" href={route}>

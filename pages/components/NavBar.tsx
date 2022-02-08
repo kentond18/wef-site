@@ -3,7 +3,12 @@ import Link from "next/link";
 import NavDropdown from "./NavDropdown";
 import NavLink from "./NavLink";
 
-const NavBar = ({ active, info }) => {
+type Props = {
+	active: string;
+	contactInfo;
+};
+
+const NavBar: React.FunctionComponent<Props> = ({ active, contactInfo }) => {
 	const pages = [
 		{
 			name: "Home",
@@ -66,19 +71,6 @@ const NavBar = ({ active, info }) => {
 		},
 	];
 
-	if (!info) {
-		info = {
-			address: {
-				street: "123 Test Street",
-				city: "Test City",
-				province: "Test Province",
-				postcode: "12345",
-			},
-			phoneNumber: "+44 000 000 0000",
-			email: "test@email.com",
-		};
-	}
-
 	return (
 		<div className="bg-light">
 			{/* Header bar to navbar */}
@@ -86,10 +78,10 @@ const NavBar = ({ active, info }) => {
 			<div className="container-fluid d-lg-flex justify-content-between border-bottom py-3 align-items-center text-black d-none fw-lighter">
 				<div className="d-flex justify-content-evenly col-6">
 					<a
-						href="tel:+447307504262"
+						href={`tel:${contactInfo.phoneNumber || ""}`}
 						className="text-black text-decoration-none"
 					>
-						{info.phoneNumber || "+44 000 000 0000"}
+						{contactInfo.phoneNumber || "+44 000 000 0000"}
 					</a>
 					<span>|</span>
 
@@ -97,7 +89,7 @@ const NavBar = ({ active, info }) => {
 						className="text-black text-decoration-none"
 						href="mailto:test@test.com?subject=Touching Base with World Eye Foundation"
 					>
-						{info.email || "test@email.com"}
+						{contactInfo.email || "test@email.com"}
 					</a>
 					<span>|</span>
 					<div className="d-flex justify-content-evenly">
@@ -160,7 +152,7 @@ const NavBar = ({ active, info }) => {
 								return (
 									<NavDropdown
 										key={i}
-										sublinks={e}
+										links={e}
 										active={active}
 									/>
 								);

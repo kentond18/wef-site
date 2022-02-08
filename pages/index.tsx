@@ -1,13 +1,17 @@
-import Head from "next/head";
 import styles from "../styles/Home.module.scss";
-import MainJumbotron from "./components/Index/MainJumbotron.js";
+import MainJumbotron from "./components/Index/MainJumbotron";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { gql } from "graphql-request";
 import graphcms from "../config/graphCMSConfig";
+import { GetStaticProps } from "next";
 
-export default function Home({ contactInfo }) {
+type Props = {
+	contactInfo;
+};
+
+export default function Home({ contactInfo }: Props) {
 	return (
 		<div className={styles.container}>
 			<Header
@@ -15,17 +19,17 @@ export default function Home({ contactInfo }) {
 				description="World Eye Foundation"
 			/>
 			<div className="vh-100 d-flex flex-column">
-				<NavBar active="/" info={contactInfo} />
+				<NavBar active="/" contactInfo={contactInfo} />
 
-				<MainJumbotron data={contactInfo} />
+				<MainJumbotron contactInfo={contactInfo} />
 
-				<Footer active="home" info={contactInfo} />
+				<Footer active="home" contactInfo={contactInfo} />
 			</div>
 		</div>
 	);
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -49,4 +53,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};

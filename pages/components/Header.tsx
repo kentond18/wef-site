@@ -1,6 +1,11 @@
 import Head from "next/head";
 
-const Header = ({ title, description }) => {
+type Props = {
+	title: string;
+	description: string;
+};
+
+const Header: React.FunctionComponent<Props> = ({ title, description }) => {
 	return (
 		<Head>
 			<title>{title}</title>

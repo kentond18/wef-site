@@ -1,10 +1,14 @@
 import Image from "next/image";
 
-const BioCard = ({ data }) => {
-	if (!data) {
+type Props = {
+	Profile;
+};
+
+const BioCard: React.FunctionComponent<Props> = ({ Profile }) => {
+	if (!Profile) {
 		return (
 			<div className="display-3">
-				The card was not rendered properly. Missing Data
+				The card was not rendered properly. Missing profile
 			</div>
 		);
 	}
@@ -17,21 +21,21 @@ const BioCard = ({ data }) => {
 			<div className="card align-items-center pt-3">
 				<div>
 					<Image
-						src={data.profilePicture.url}
-						alt={`Image of ${data.name}`}
+						src={Profile.profilePicture.url}
+						alt={`Image of ${Profile.name}`}
 						height={200}
 						width={200}
 						className="card-img-top rounded-circle"
 					/>
 				</div>
 				<div className="card-body">
-					<h4 className="card-title">{data.name}</h4>
+					<h4 className="card-title">{Profile.name}</h4>
 					<p className="card-subtitle text-muted mb-2">
-						{data.position}
+						{Profile.position}
 					</p>
 					<div className="text-center">
 						<div className="card-text">
-							{data.smallProfileBlurb}
+							{Profile.smallProfileBlurb}
 						</div>
 					</div>
 				</div>
