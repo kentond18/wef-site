@@ -3,8 +3,14 @@ import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import { gql } from "graphql-request";
 import graphcms from "../config/graphCMSConfig";
+import { GetStaticProps, NextPage } from "next";
+import { contactInfo } from "../types";
 
-const Custom404 = ({ contactInfo }) => {
+type Props = {
+	contactInfo: contactInfo;
+};
+
+const Custom404: NextPage<Props> = ({ contactInfo }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -16,21 +22,21 @@ const Custom404 = ({ contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			<NavBar info={contactInfo} />
+			<NavBar contactInfo={contactInfo} active={""} />
 
 			<div className="text-center py-5">
 				<h1 className="display-3">Sorry, this page was not found!</h1>
 				<h3>Navigate above to another page.</h3>
 			</div>
 
-			<Footer info={contactInfo} />
+			<Footer contactInfo={contactInfo} active={""} />
 		</div>
 	);
 };
 
 export default Custom404;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -54,4 +60,4 @@ export async function getStaticProps() {
 			contactInfo: contactInfos[0],
 		},
 	};
-}
+};
