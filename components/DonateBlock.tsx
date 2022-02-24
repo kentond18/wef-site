@@ -26,7 +26,7 @@ const DonateBlock: React.FunctionComponent = () => {
 
 	const [email, setEmail] = useState("");
 	const [amount, setAmount] = useState(0);
-	const [currency, setCurrency] = useState("NGN");
+	const [currency, setCurrency] = useState("USD");
 
 	return (
 		<div className="card border-0" style={{ width: "24rem" }}>
@@ -92,6 +92,7 @@ const DonateBlock: React.FunctionComponent = () => {
 					<select
 						className="form-select"
 						onChange={(e) => setCurrency(e.target.value)}
+						value={currency}
 					>
 						<option value="USD">USD</option>
 						<option value="ZAR">ZAR</option>
