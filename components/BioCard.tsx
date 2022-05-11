@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { Profile } from "../types";
 
 type Props = {
-	Profile;
+	Profile: Profile;
 };
 
 const BioCard: React.FunctionComponent<Props> = ({ Profile }) => {
@@ -25,13 +26,14 @@ const BioCard: React.FunctionComponent<Props> = ({ Profile }) => {
 						alt={`Image of ${Profile.name}`}
 						height={200}
 						width={200}
+						loading="lazy"
 						className="card-img-top rounded-circle"
 					/>
 				</div>
 				<div className="card-body">
 					<h4 className="card-title">{Profile.name}</h4>
 					<p className="card-subtitle text-muted mb-2">
-						{Profile.position}
+						{Profile.postiion}
 					</p>
 					<div className="text-center">
 						<div className="card-text">

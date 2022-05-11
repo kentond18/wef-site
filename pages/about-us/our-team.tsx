@@ -50,11 +50,15 @@ const ourTeam: NextPage<Props> = ({ profiles, contactInfo }) => {
 			</Head>
 
 			<NavBar active="/about-us/our-team" contactInfo={contactInfo} />
-			<h1 className="text-center pt-3">Our Team</h1>
-			<div className="d-flex justify-content-evenly flex-wrap">
-				{profiles.map((e, i) => {
-					return <BioCard Profile={e} key={i} />;
-				})}
+
+			<div className="d-flex flex-column align-items-center py-3">
+				<h1 className="text-center pt-3">Our Team</h1>
+
+				<div className="d-flex justify-content-evenly flex-wrap w-75">
+					{profiles.map((e, i) => {
+						return <BioCard Profile={e} key={i} />;
+					})}
+				</div>
 			</div>
 
 			<Footer contactInfo={contactInfo} active="/about-us/our-team" />

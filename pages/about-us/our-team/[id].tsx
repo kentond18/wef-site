@@ -1,16 +1,25 @@
 import Head from "next/head";
-import Footer from "../components/Footer";
-import NavBar from "../components/NavBar";
+import Footer from "../../../components/Footer";
+import NavBar from "../../../components/NavBar";
 import { gql } from "graphql-request";
-import graphcms from "./graphCMSConfig";
-import { GetStaticProps, NextPage } from "next";
-import { contactInfo } from "../types";
+import graphcms from "../../../config/graphCMSConfig";
+import {
+	GetServerSideProps,
+	GetStaticPaths,
+	GetStaticProps,
+	NextPage,
+} from "next";
+import { contactInfo } from "../../../types";
+import { useRouter } from "next/router";
 
 type Props = {
 	contactInfo: contactInfo;
 };
 
-const Boilerplate: NextPage<Props> = ({ contactInfo }) => {
+const TeamMember: NextPage<Props> = ({ contactInfo }) => {
+	const router = useRouter();
+	const { id } = router.query;
+
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -22,20 +31,18 @@ const Boilerplate: NextPage<Props> = ({ contactInfo }) => {
 				<link rel="icon" href="/wef_icon.png" />
 			</Head>
 
-			{/* Change active link prop */}
-			<NavBar contactInfo={contactInfo} active={""} />
+			<NavBar contactInfo={contactInfo} active={"our-team"} />
 
 			<div className=""></div>
 
-			{/* Change active link prop */}
-			<Footer contactInfo={contactInfo} active={""} />
+			<Footer contactInfo={contactInfo} active={"our-team"} />
 		</div>
 	);
 };
 
-export default Boilerplate;
+export default TeamMember;
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (context) => {
 	const QUERY = gql`
 		query ContactInfo {
 			contactInfos {
@@ -60,3 +67,5 @@ export const getStaticProps: GetStaticProps = async () => {
 		},
 	};
 };
+
+export const getStaticPaths: GetStaticPaths = async () => {};

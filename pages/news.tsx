@@ -26,6 +26,10 @@ const News: NextPage<Props> = ({ contactInfo }) => {
 
 			<div className="display-4 text-center py-3">News</div>
 
+			<div className="display-4 text-center">
+				Please check back later for a news update.
+			</div>
+
 			<Footer contactInfo={contactInfo} active="news" />
 		</div>
 	);

@@ -5,12 +5,69 @@ import graphcms from "../config/graphCMSConfig";
 import { gql } from "graphql-request";
 import { GetStaticProps, NextPage } from "next";
 import { contactInfo } from "../types";
+import { useState } from "react";
+import axios from "axios";
 
 type Props = {
 	contactInfo: contactInfo;
 };
 
-const donateComplete: NextPage<Props> = ({ contactInfo }) => {
+const DonateComplete: NextPage<Props> = ({ contactInfo }) => {
+	const [email, setEmail] = useState("");
+	const [disabled, setDisabled] = useState(false);
+
+	const onClickHandler = async (e) => {
+		// Prevent default button action
+		e.preventDefault();
+		setDisabled(true);
+
+		// Form submit operation
+		try {
+			await axios
+				.post("/api/newsletter", {
+					email: email,
+				})
+				.then((response) => {
+					if (response.status == 200) {
+						switch (response.data.info) {
+							case "User already subscribed":
+								setEmail("");
+								document
+									.getElementById("emailErrorText")
+									.classList.remove("d-none");
+								setDisabled(false);
+								break;
+							case "User added":
+								setEmail("");
+								document
+									.getElementById("confirmationText")
+									.classList.remove("d-none");
+								setDisabled(false);
+								break;
+
+							default:
+								break;
+						}
+					}
+				});
+		} catch (error) {
+			console.log(error);
+			// Clear input field
+			setEmail("");
+			// Display error message and contactInform to try again
+			document
+				.getElementById("serverErrorText")
+				.classList.remove("d-none");
+			setDisabled(false);
+		}
+	};
+
+	const onChangeHandler = (e) => {
+		if (e.target.name == "emailAddress") {
+			setEmail(e.target.value);
+		}
+	};
+
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -32,21 +89,46 @@ const donateComplete: NextPage<Props> = ({ contactInfo }) => {
 					We are extremely thankful for your support. Sign up below to
 					receive updates regarding our progress. Thank you again!
 				</p>
-				<form action="/email-signup" className="align-self-center py-3">
+				<form>
+					<div
+						className="text-center fw-normal pt-2 text-primary d-none"
+						id="confirmationText"
+					>
+						Sign up complete!
+						<br /> Check your email to confirm sign up.
+					</div>
+					<div
+						className="text-center fw-normal pt-2 text-warning d-none"
+						id="serverErrorText"
+					>
+						There was an error with the sign up! <br />
+						Please refresh the page and try again.
+					</div>
+					<div
+						className="text-center fw-normal pt-2 text-warning d-none"
+						id="emailErrorText"
+					>
+						You&apos;re already a member! <br />
+						Enter a different email or unsubscribe and resubscribe.
+					</div>
 					<div className="input-group">
 						<input
-							className="form-control"
 							type="email"
+							className="form-control col-6"
 							name="emailAddress"
 							id="emailInput"
 							placeholder="Email address"
+							value={email}
 							required
+							onChange={onChangeHandler}
 						/>
 						<button
+							className="btn btn-primary"
 							type="submit"
-							className="btn btn-primary rounded"
+							onClick={onClickHandler}
+							disabled={disabled}
 						>
-							Sign up!
+							<i className="bi bi-envelope"></i>
 						</button>
 					</div>
 				</form>
@@ -56,7 +138,7 @@ const donateComplete: NextPage<Props> = ({ contactInfo }) => {
 	);
 };
 
-export default donateComplete;
+export default DonateComplete;
 
 export const getStaticProps: GetStaticProps = async () => {
 	const QUERY = gql`

@@ -97,7 +97,9 @@ const newsletter = async (req: NextApiRequest, res: NextApiResponse) => {
 			// -> Add email to list
 			addUser(userEmail, 2);
 		} else {
-			res.status(504).send(JSON.stringify({ info: "Server error" }));
+			res.status(504).send(
+				JSON.stringify({ info: "Server error", error })
+			);
 		}
 	}
 };

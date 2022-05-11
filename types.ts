@@ -64,3 +64,16 @@ export interface ProfilePicture {
 	width: number;
 	height: number;
 }
+
+export interface Screening {
+	id: string;
+	location: string;
+	photosFromScreening: PhotosFromScreening[];
+}
+
+export interface PhotosFromScreening {
+	height: number;
+	width: number;
+	url: string;
+	id: string;
+}

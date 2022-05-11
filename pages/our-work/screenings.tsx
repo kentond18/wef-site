@@ -3,14 +3,16 @@ import Footer from "../../components/Footer";
 import NavBar from "../../components/NavBar";
 import { gql } from "graphql-request";
 import graphcms from "../../config/graphCMSConfig";
-import { contactInfo } from "../../types";
+import { contactInfo, Screening } from "../../types";
 import { GetStaticProps, NextPage } from "next";
+import ScreeningCard from "../../components/ScreeningCard";
 
 type Props = {
 	contactInfo: contactInfo;
+	screenings: Screening[];
 };
 
-const Screenings: NextPage<Props> = ({ contactInfo }) => {
+const Screenings: NextPage<Props> = ({ contactInfo, screenings }) => {
 	return (
 		<div className="vh-100 d-flex flex-column">
 			<Head>
@@ -26,6 +28,11 @@ const Screenings: NextPage<Props> = ({ contactInfo }) => {
 			<NavBar contactInfo={contactInfo} active={"/our-work/screenings"} />
 
 			<div className="display-2 text-center py-3">Screenings</div>
+			<div className="container">
+				{screenings.map((screening) => (
+					<ScreeningCard screening={screening} key={screening.id} />
+				))}
+			</div>
 
 			{/* Change active link prop */}
 			<Footer contactInfo={contactInfo} active={"/screenings"} />
@@ -52,11 +59,28 @@ export const getStaticProps: GetStaticProps = async () => {
 		}
 	`;
 
+	const QUERY2 = gql`
+		query screenings {
+			screenings {
+				id
+				location
+				photosFromScreening {
+					height
+					width
+					url
+					id
+				}
+			}
+		}
+	`;
+
 	const { contactInfos } = await graphcms.request(QUERY);
+	const { screenings } = await graphcms.request(QUERY2);
 
 	return {
 		props: {
 			contactInfo: contactInfos[0],
+			screenings,
 		},
 	};
 };
