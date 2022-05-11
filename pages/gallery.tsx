@@ -41,7 +41,6 @@ const Gallery: NextPage<Props> = ({ contactInfo, gallery }) => {
 								height={image.height}
 								src={image.url}
 								alt={image.id}
-								loading="lazy"
 							/>
 						</div>
 					))}
