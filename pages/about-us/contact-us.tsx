@@ -35,7 +35,7 @@ const ContactUs: NextPage<Props> = ({ contactInfo }) => {
 		}
 	};
 
-	const onClickHandler = async (e) => {
+	const onSubmitHandler = async (e) => {
 		e.preventDefault();
 		setDisabled(true);
 
@@ -73,6 +73,7 @@ const ContactUs: NextPage<Props> = ({ contactInfo }) => {
 			<form
 				className="container col-10 pb-3 col-md-8 col-lg-6 col-xl-4"
 				id="contactForm"
+				onSubmit={onSubmitHandler}
 			>
 				<div className="mb-3">
 					<label htmlFor="name" className="form-label">
@@ -123,7 +124,6 @@ const ContactUs: NextPage<Props> = ({ contactInfo }) => {
 				<button
 					type="submit"
 					className="btn btn-primary text-white"
-					onClick={onClickHandler}
 					disabled={disabled}
 				>
 					Submit
